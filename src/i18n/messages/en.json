@@ -142,5 +142,11 @@
   },
   "blogs": "Blogs",
   "about": "About The Company",
-  "more": "More"
+  "more": "More",
+  "noBlogsMessage": "No blogs available for this category.",
+  "by": "BY",
+  "blog_not_found": "Blog Not Found !",
+  "blog_not_found_description": "Oops! Looks like this blog post is missing. Try another one from our collection!",
+  "views": "{count} {count, plural, one {view} other {views}}",
+  "back_to_blogs": "Back To Blogs"
 }

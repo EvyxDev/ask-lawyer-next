@@ -41,7 +41,7 @@ const MobileApplication = async () => {
           </h2>
           {/* Download mobile app */}
 
-          <div className="flex gap-3 ">
+          <div className="flex md:flex-row flex-col gap-3 ">
             <Link
               href={"/"}
               className="flex justify-center items-center gap-2 bg-primary-dark hover:bg-primary transition-all duration-700 w-auto px-2 py-2 rounded shrink-0"

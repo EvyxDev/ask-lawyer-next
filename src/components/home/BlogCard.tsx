@@ -5,21 +5,15 @@ import { CalendarIcon } from "lucide-react"
 import { useLocale } from "next-intl"
 import { Link } from "@/i18n/routing"
 
-interface BlogCardProps {
-  image: string
-  date: string
-  title: string
-  description: string
-  slug: string
-}
 
-export default function BlogCard({ image, date, title, description, slug }: BlogCardProps) {
+
+export default function BlogCard({ image, date, title, description, id }: Blog) {
   const locale = useLocale()
   const isRtl = locale === "ar"
 
   return (
     <div className="bg-white rounded-lg overflow-hidden  ">
-      <Link href={`/blogs/${slug}`}>
+      <Link href={`/blogs/${id}`}>
         <div className="relative h-56 w-full">
           <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover" />
         </div>

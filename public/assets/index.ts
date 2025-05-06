@@ -14,4 +14,5 @@ import asklawyer from "./asklawyer.svg"
 import contactus from "./contactus.svg"
 import iphone from "./iPhone.svg"
 import aboutus from "./aboutus.svg"
-export {mainlogo , UkIcon ,SaLogo ,mainlogo2 ,authbg ,hero1 ,hero2 ,requestoffer ,askservice ,chooselawyer ,consultantchat ,calllawyer ,asklawyer ,contactus ,iphone ,aboutus} 
+import aboutusBg from "./aboutBg.jpg"
+export {mainlogo , UkIcon ,SaLogo ,mainlogo2 ,authbg ,hero1 ,hero2 ,requestoffer ,askservice ,chooselawyer ,consultantchat ,calllawyer ,asklawyer ,contactus ,iphone ,aboutus ,aboutusBg} 

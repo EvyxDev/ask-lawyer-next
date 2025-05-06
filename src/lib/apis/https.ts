@@ -1,11 +1,11 @@
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const getFooter = async () => {
+export const getFooter = async ():Promise<BlogCategoryResponse> => {
   try {
     const response = await fetch(`${API_URL}api/setting`, {
       method: "GET",
       cache: "no-cache",
-      signal: AbortSignal.timeout(5000), // 5-second timeout
     });
 
     if (!response.ok) {
@@ -16,7 +16,8 @@ export const getFooter = async () => {
     return data; 
   } catch (error) {
     return {
-      data: null,
+      success: false,
+      data: [],
       error: error instanceof Error ? error.message : "Unknown error fetching footer data",
     };
   }
