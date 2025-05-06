@@ -1,0 +1,146 @@
+{
+  "meta-title": "Ask lawyer",
+  "meta-description": "Hesperides University is a leading academic institution committed to providing high-quality education that keeps pace with global developments, with a focus on scientific research and sustainable social impact. We believe in the importance of innovation, continuous development, and sustainability in building an outstanding academic future. We are dedicated to preparing leaders and innovators who contribute to the advancement of society.",
+  "navbar": {
+    "home": "Home",
+    "about": "about",
+    "how_process_works": "How the process works",
+    "hire_lawyer": "Hire a Lawyer",
+    "privacy_policy": "Privacy Policy",
+    "legal_information": "Legal Information",
+    "services": "Services",
+    "contact_us": "Contact Us",
+    "menu": "My Account",
+    "profile": "Profile",
+    "activities": "Activities",
+    "logout": "Logout"
+  },
+  "notFound": {
+    "homeAriaLabel": "Home",
+    "logoAlt": "Main Logo",
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved.",
+    "goHome": "Go Home"
+  },
+  "NA": "not found",
+  "footer": {
+    "NA": "not found",
+    "get-help": "Get legal help online",
+    "location": "Location",
+    "contact_us": "Contact Us",
+    "locationLinks": {
+      "about_contry": "About the Company",
+      "services": "Services",
+      "lawyers": "Lawyers",
+      "news": "News"
+    },
+    "globalError": {
+      "locale": "en",
+      "homeAriaLabel": "Return to homepage",
+      "logoAlt": "Site logo",
+      "title": "Something Went Wrong!",
+      "description": "Sorry, an unexpected error occurred. Please try again or return to the homepage.",
+      "errorCode": "Error code",
+      "tryAgain": "Try Again",
+      "goHome": "Go Home"
+    }
+  },
+  "error_loading": "Failed to load footer data. Please try again later.",
+  "network_timeout": "Network timeout: Please check your connection and try again.",
+  "server_error": "Server error: Please try again later.",
+  "login": {
+    "lawyer": "lawyer",
+    "consultant": "Legal Consultant",
+    "client": "Client",
+    "email": "email",
+    "password": "password",
+    "Forgot your password": "Forgot your password ?",
+    "Donthaveanaccount": "Don't have an account ?",
+    "Create an account": "Create an account",
+    "title": "Login",
+    "labels": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "buttons": {
+      "signIn": "Sign In",
+      "signingIn": "Signing in..."
+    },
+    "errors": {
+      "email": {
+        "required": "Email is required",
+        "invalid": "Invalid email address"
+      },
+      "password": {
+        "min": "Password must be at least 6 characters",
+        "format": "Password must contain an uppercase letter, lowercase letter, number, and special character"
+      },
+      "general": {
+        "invalidCredentials": "Invalid credentials",
+        "serverError": "An error occurred during login"
+      }
+    }
+  },
+  "Forgot-Password": {
+    "lawyer": "lawyer",
+    "consultant": "Legal Consultant",
+    "client": "Client",
+    "title": "Reset Password",
+    "email": "Email",
+    "confirm": "Confirm",
+    "errors": {
+      "email": {
+        "required": "Email is required",
+        "invalid": "Invalid email address"
+      },
+      "password": {
+        "min": "Password must be at least 6 characters",
+        "format": "Password must contain an uppercase letter, lowercase letter, number, and special character"
+      },
+      "general": {
+        "invalidCredentials": "Invalid credentials",
+        "serverError": "An error occurred during login"
+      }
+    }
+  },
+  "hero": {
+    "ask_lawyer": "Ask a Lawyer",
+    "call_lawyer": "Call a Lawyer",
+    "chat_with_consultant": "Chat With Consultant",
+    "choose_lawyer": "Choose Lawyer Or Company",
+    "ask_service": "Request a Service",
+    "request_offer": "Price List Offer",
+    "more": "more"
+  },
+  "contactus": {
+    "title": "contact us",
+    "email": "Email",
+    "phone": "Phone Number",
+    "subject": "Subject",
+    "name": "Name",
+    "message": "Your Message",
+    "success_message": "Your message has been sent successfully!",
+    "unknown_error": "An unknown error occurred",
+    "send": "Send",
+    "errors": {
+      "email": {
+        "invalid": "Please enter a valid email address.",
+        "required": "Email is required."
+      },
+      "name": "Name is required.",
+      "mobile": "Mobile number is required.",
+      "content": "Message content is required.",
+      "subject": "Subject is required."
+    }
+  },
+  "Download the app": "Download the app",
+  "Error": {
+    "title": "Oops, Something Went Wrong!",
+    "defaultMessage": "An unexpected error occurred. Please try again later.",
+    "tryAgain": "Try Again",
+    "goHome": "Go to Homepage"
+  },
+  "blogs": "Blogs",
+  "about": "About The Company",
+  "more": "More"
+}
