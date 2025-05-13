@@ -4,7 +4,6 @@ interface Image {
   title: string;
   imgUrl: string;
 }
-
 interface HereData {
   title: string;
   description: string;
@@ -17,3 +16,31 @@ declare type ContactFormData = {
   subject: string;
   content: string;
 };
+declare interface AboutDetails {
+  content:string;
+}
+declare interface AboutResponse {
+  success: boolean;
+  data: AboutDetails;
+}
+declare interface PrivacyPolicy {
+  id:number;
+  content_ar:string;
+  content_en:string;
+}
+declare interface PrivacyPolicyResponse {
+  success: boolean;
+  data: PrivacyPolicy;
+  error?: string; 
+}
+
+declare interface HowProcessWorks {
+  id:number;
+  description_ar:string;
+  description_en:string;
+}
+declare interface HowProcessWorksResponse {
+  success: boolean;
+  data: HowProcessWorks;
+  error?: string; 
+}

@@ -14,7 +14,7 @@ const page = async() => {
           src={aboutusBg}
           quality={100}
         />
-        <h1 className="2xl:text-7xl xl:text-6xl text-5xl font-semibold z-50 text-white">
+        <h1 className="xl:text-5xl lg:text-4xl text-3xl font-semibold z-50 text-white">
           {t("about")}
         </h1>
       </div>

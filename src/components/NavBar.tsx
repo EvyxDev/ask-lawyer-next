@@ -109,7 +109,7 @@ const NavBar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed top-0 left-0 w-screen h-screen bg-white z-50 flex flex-col justify-center items-center">
+        <div className="md:hidden fixed top-0 left-0 w-screen h-screen bg-white !z-50 flex flex-col justify-center items-center">
           <button
             onClick={toggleMenu}
             aria-label="Close menu"

@@ -45,7 +45,9 @@
       "goHome": "Go Home"
     }
   },
-  "error_loading": "Failed to load footer data. Please try again later.",
+  "users": "users",
+  "lawyers": "Lawyers",
+  "error_loading": "Failed to load the data. Please try again later.",
   "network_timeout": "Network timeout: Please check your connection and try again.",
   "server_error": "Server error: Please try again later.",
   "login": {
@@ -103,13 +105,16 @@
       }
     }
   },
+  "ask_lawyer": "Ask a Lawyer",
   "hero": {
     "ask_lawyer": "Ask a Lawyer",
     "call_lawyer": "Call a Lawyer",
     "chat_with_consultant": "Chat With Consultant",
-    "choose_lawyer": "Choose Lawyer Or Company",
+    "chat_with_lawyer": "request a Chat With a special lawyer",
+    "choose_lawyer": "Request a Chat with a legal Consultant",
+    "get_call_with_lawyer": "get a call with a lawyer",
     "ask_service": "Request a Service",
-    "request_offer": "Price List Offer",
+    "request_offer": "Price List Request",
     "more": "more"
   },
   "contactus": {
@@ -131,7 +136,10 @@
       "mobile": "Mobile number is required.",
       "content": "Message content is required.",
       "subject": "Subject is required."
-    }
+    },
+    "address": "Address",
+    "call_number": "Call Number",
+    "error_loading": "Failed to load the data. Please try again later."
   },
   "Download the app": "Download the app",
   "Error": {
@@ -148,5 +156,37 @@
   "blog_not_found": "Blog Not Found !",
   "blog_not_found_description": "Oops! Looks like this blog post is missing. Try another one from our collection!",
   "views": "{count} {count, plural, one {view} other {views}}",
-  "back_to_blogs": "Back To Blogs"
+  "back_to_blogs": "Back To Blogs",
+  "data_not_found_description": "Oops! Looks like this Data is missing.",
+  "privacy-policy": "privacy policy",
+  "how-process-works": "how process works",
+  "legal_advice_description": "You can request legal advice from a lawyer here. The service is free and your identity is hidden. No registration is required. Ask your legal question and get a free answer from one of the lawyers through the Q&A section, live chat, or by phone. Just choose the method that suits you.",
+  "how-process-works-lawyers": "how process works with lawyers",
+  "how-process-works-clients": "how process works with clients",
+  "legal_advice_description-lawyers1": "You can submit a Request for Quotation (RFQ) through the Legal Advice Middle East website to participating lawyers and receive quotes from them to choose from. You can then accept any offer you receive and hire the lawyer you selected by paying their fee online. ",
+  "legal_advice_description-lawyers2": "You will need to pay a small refundable amount to prove the seriousness of your request before sending your RFQ to the lawyers. You can later use this amount to pay the lawyer’s fee or request a refund if, for any reason, you receive fewer than three quotations from lawyers within the specified period (five working days).",
+  "steps": {
+    "confirmation_message": "waiting for a confirmation message to log in",
+    "attach_file": "attach file",
+    "verification": "verification of being a lawyer",
+    "create_account": "create account as a lawyer",
+    "register": "Register"
+  },
+  "ask-service": "Ask Service",
+  "legal_consultation_message": "You can consult a lawyer from here. The service is free and your identity is anonymous. No registration is required. Ask your legal question and get a free answer from one of the lawyers through the Q&A section, live chat, or by phone. Just choose the method that suits you.",
+  "asklawyer": {
+    "call_request": "call request",
+    "live_chat": "live chat",
+    "send_question": "send question"
+  },
+  "legalInformation": {
+    "questions_and_answers": "questions and answers",
+    "legal_blog": "legal blog",
+    "legal_dictionary": "legal dictionary",
+    "laws_and_regulations": "questions and answers",
+      "noBlogsMessage": "No blogs available for this category.",
+    "legal_information": "Legal Information",
+    "legal_consultation_info": "You can request a consultation from a lawyer here. The service is free and your identity is hidden. No registration is required. Ask your legal question and get a free answer from one of the lawyers via the Q&A section, live chat, or by phone. Just choose the method that suits you:",
+    "active_lawyer": "active lawyers"
+  }
 }

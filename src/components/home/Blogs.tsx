@@ -40,7 +40,7 @@ export default function Blogs() {
 
       <div
         ref={categoryContainerRef}
-        className="flex gap-2 mb-6 justify-start sm:justify-center items-center w-full overflow-x-auto px-4"
+        className="flex gap-2 mb-6 justify-start sm:justify-center items-center w-full overflow-x-auto md:px-0 px-4"
       >
         {isCategoriesLoading ? (
           Array.from({ length: 4 }).map((_, index) => (
@@ -60,7 +60,7 @@ export default function Blogs() {
                   : "lg:text-3xl text-lg sm:text-2xl"
               }`}
             >
-              {cat.name_ar}
+              {cat.name}
             </button>
           ))
         )}
@@ -82,18 +82,18 @@ export default function Blogs() {
               </div>
             </div>
           ))
-        ) : blogsData.length === 0 ? (
+        ) : blogsData.data?.length === 0 ? (
           <div className="col-span-full text-center py-10">
             <p className="text-2xl text-gray-600 mb-2">
               {t("noBlogsMessage", { defaultMessage: "No blogs available for this category." })}
             </p>
           </div>
         ) : (
-          blogsData.map((blog: Blog) => (
+          blogsData.data?.map((blog: Blog) => (
             <BlogCard
               key={blog.id}
               image={blog.image}
-              date={blog.date || ""}
+              created_at={blog.created_at || ""}
               title={blog.title}
               description={blog.description}
               id={blog.id}

@@ -31,10 +31,9 @@ export const sendContactForm = async ({
     throw err;
   }
 };
-
 export const getblogCategory = async (locale: string = "en") => {
   try {
-    const response = await fetch(`${API_URL}api/get-blogCategory`, {
+    const response = await fetch(`${API_URL}api/get-blogCategory-web`, {
       method: "GET",
       cache: "no-cache",
       headers: {
@@ -55,9 +54,9 @@ export const getblogCategory = async (locale: string = "en") => {
     };
   }
 };
-export const getBlogs= async (id:number=1 ,page:number=1) => {
+export const getBlogs= async (id:number=1 ,page:number=1,limit:number=8) => {
   try {
-    const response = await fetch(`${API_URL}api/get-blogByCategory/${id}?page=${page}`, {
+    const response = await fetch(`${API_URL}api/get-blogByCategory/${id}?page=${page}&limit=${limit}`, {
       method: "GET",
       cache: "no-cache",
     });
@@ -67,7 +66,7 @@ export const getBlogs= async (id:number=1 ,page:number=1) => {
     }
 
     const data = await response.json();
-    return data.data.data; 
+    return data.data; 
   } catch (error) {
     return {
       data: null,
@@ -92,6 +91,29 @@ export const getBlog= async (id:number) => {
     return {
       data: null,
       error: error instanceof Error ? error.message : "Unknown error fetching blog data",
+    };
+  }
+};
+export const getAboutUs = async (locale: string = "en") => {
+  try {
+    const response = await fetch(`${API_URL}api/about-web`, {
+      method: "GET",
+      cache: "no-cache",
+      headers: {
+        "Accept-Language": locale, 
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch blog categories: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      data: null,
+      error: error instanceof Error ? error.message : "Unknown error fetching blog categories",
     };
   }
 };

@@ -1,8 +1,7 @@
 declare interface BlogCategory {
     id: number;
     is_activate: number;
-    name_ar: string;
-    name_en: string;
+    name: string;
   }
   interface BlogCategoryResponse {
     success: boolean;
@@ -14,7 +13,7 @@ declare interface BlogCategory {
     title: string;
     description: string;
     image: string;
-    date?: string;
+    created_at?: string;
     views:number;
     country_id?:number;
   }

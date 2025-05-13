@@ -7,13 +7,13 @@ import { getFooter } from "@/lib/apis/https";
 import { IoCall } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
-import { FooterResponse } from "@/lib/types/FooterData";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 
 const Footer = async () => {
   const t = await getTranslations();
-  const footerData: FooterResponse["data"] = (await getFooter()).data;
+  const footerResponse: FooterData = await getFooter(); 
+  const footerData: FooterData | null = footerResponse.data;
   if (!footerData) {
     return (
       <footer className="bg-secondary h-[30vh] w-full">

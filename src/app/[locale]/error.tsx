@@ -21,7 +21,7 @@ export default function Error({
 
   return (
     <div className="h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="max-w-lg w-full bg-white rounded-2xl shadow-xl p-8 text-center space-y-6">
+      <div className="max-w-xl w-full bg-white rounded-2xl shadow-xl p-8 text-center space-y-6">
         {/* Error Icon */}
         <div className="flex justify-center">
           <svg

@@ -7,7 +7,7 @@ import { Link } from "@/i18n/routing"
 
 
 
-export default function BlogCard({ image, date, title, description, id }: Blog) {
+export default function BlogCard({ image, created_at, title, description, id }: Blog) {
   const locale = useLocale()
   const isRtl = locale === "ar"
 
@@ -20,7 +20,7 @@ export default function BlogCard({ image, date, title, description, id }: Blog) 
         <div className="p-5 shadow border-2">
           <div className="flex items-center gap-2 text-gray-500 mb-3">
             <CalendarIcon className="w-4 h-4" />
-            <span className="text-sm">{date}</span>
+            <span className="text-sm">{created_at}</span>
           </div>
           <h3 className={`text-xl font-bold mb-3 text-gray-800 ${isRtl ? "text-right" : "text-left"}`}>{title}</h3>
           <p className={`text-gray-600 line-clamp-3 ${isRtl ? "text-right" : "text-left"}`}>{description}</p>

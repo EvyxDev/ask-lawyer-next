@@ -44,8 +44,12 @@ const HeroSection = () => {
         ))}
       </Swiper>
       <div className="absolute bottom-1/2 xl:start-0 xl:-translate-x-0 translate-x-1/2	start-1/2	 z-20   font-semibold bg-[#F2E9EF80] blurred rounded-sm 2xl:p-12 lg:p-8 md:p-6 p-4   md:max-w-3xl max-w-full w-full flex flex-col lg:gap-4 gap-3 ">
-        <h2 className="lg:text-4xl text-2xl text-primary ">{hereData[0].title}</h2>
-        <p className="text-white lg:text-xl text-lg">{hereData[0].description}</p>
+        <h2 className="lg:text-4xl text-2xl text-primary ">
+          {hereData[0].title}
+        </h2>
+        <p className="text-white lg:text-xl text-lg">
+          {hereData[0].description}
+        </p>
         <button className="bg-secondary hover:bg-secondary-dark text-white lg:py-4 py-3 lg:w-40 w-36 rounded-md cursor-pointer">
           {t("more")}
         </button>
