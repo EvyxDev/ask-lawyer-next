@@ -12,6 +12,7 @@ import { getLoginSchema, LoginFormType } from "@/lib/schemes/types/authSchema";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { FiLoader } from "react-icons/fi";
+import { getFCMToken } from "@/lib/fcm";
 
 const Login = () => {
   const [activeTab, setActiveTab] = useState("login");
@@ -49,10 +50,14 @@ const Login = () => {
   const onSubmit = async (data: LoginFormType) => {
     setError(null);
     try {
+      const fcmToken = await getFCMToken(); 
+        console.log( "fcm token", fcmToken)
+
       const result = await signIn("credentials", {
         email: data.email,
         password: data.password,
         user_type: getUserType(activeTab),
+        fcm_token: fcmToken, 
         redirect: false,
       });
 

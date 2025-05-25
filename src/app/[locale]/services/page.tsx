@@ -12,7 +12,7 @@ const page = async () => {
     <section>
       <Banner titleKey="ask-service" />
       <div className="flex flex-col items-center justify-center">
-        <div className="mx-auto container p-4 xl:m-8 lg:m-6 m-4">
+        <div className="mx-auto container max-w-7xl p-4  ">
           <div className="relative h-[40vh] flex justify-center items-center">
             <Image
               alt="Privacy Policy background"
@@ -22,18 +22,18 @@ const page = async () => {
               src={privacyBg}
             />
           </div>
-          <h2 className="my-6 lg:text-5xl text-4xl font-semibold text-background-dark">
+          <h2 className="md:my-8 my-6 lg:text-5xl text-4xl font-semibold text-background-dark">
             {t("ask-service")}
           </h2>
 
-          <div className=" flex items-center lg:gap-6 gap-4   flex-wrap">
+          <div className=" flex items-center  gap-4  flex-wrap ">
             {servicesLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
-                className="bg-secondary hover:bg-secondary-dark transition-all duration-700 2xl:w-72 xl:w-64 md:w-56 w-48 2xl:h-52 xl:h-48 lg:h-40 h-36 shrink-0 text-white flex flex-col gap-4 items-center justify-center rounded-lg shadow-md text-center xl:text-2xl lg:text-xl text-lg font-semibold p-4 "
+                className="overflow-hidden bg-secondary hover:bg-secondary-dark transition-all duration-700   w-48   h-40  shrink-0 text-white flex flex-col gap-4 items-center justify-center rounded-lg shadow-md text-center  lg:text-xl md:text-lg text-md font-semibold p-4 "
               >
-                <Image width={60} alt={t(`hero.${link.key}`)} src={link.img} />
+                <Image width={50} alt={t(`hero.${link.key}`)} src={link.img} />
 
                 {t(`hero.${link.key}`)}
               </Link>

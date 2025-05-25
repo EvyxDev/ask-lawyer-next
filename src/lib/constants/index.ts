@@ -1,4 +1,4 @@
-import { askservice, calllawyer, chooselawyer, consultantchat, hero1, hero2, requestoffer ,asklawyer, getcall, chatRequest, sendQuestion, legalDic, lawsAndRegulations, legalBlog } from "../../../public/assets";
+import { askservice, calllawyer, chooselawyer, consultantchat, hero1, hero2, requestoffer ,asklawyer, getcall, chatRequest, sendQuestion, legalDic, lawsAndRegulations, legalBlog, lawyersIcon2, lawyerscompanyIcon } from "../../../public/assets";
 
 export const navBarLinks = [
   { key: "home", href: "/" },
@@ -26,7 +26,7 @@ export const HeroLinks = [
 ];
 export const servicesLinks = [
 { key: "ask_lawyer", href: "/ask-lawyer",img: asklawyer },
- { key: "call_lawyer", href: "/call-",img: calllawyer },
+ { key: "call_lawyer", href: "/call-request",img: calllawyer },
  { key: "chat_with_consultant", href: "/consultant-chat" ,img:consultantchat },
  { key: "chat_with_lawyer", href: "/chat-with-lawyer" ,img: consultantchat },
  { key: "choose_lawyer", href: "/choose-lawyer" ,img: chooselawyer },
@@ -44,7 +44,11 @@ export const legalInformationLinks = [
 { key: "questions_and_answers", href: "/questions-and-answers" ,img:sendQuestion },
 
 ];
+export const chooselawyerLinks = [
+{ key: "lawyers", href: "/lawyers",img: lawyersIcon2 },
+{ key:  "lawFirms", href: "/law-Firms",img: lawyerscompanyIcon },
 
+];
 
 export const hereData: HereData[] = [
   {

@@ -30,7 +30,7 @@ const Footer = async () => {
   }
   return (
     <footer className="bg-secondary h-full w-full">
-      <div className="mx-auto p-4 container h-full">
+      <div className="mx-auto p-4 container max-w-7xl h-full">
         <div className="grid lg:grid-cols-12 md:grid-cols-4 grid-cols-2 justify-between  w-full lg:gap-6 md:gap-6 gap-4 my-8">
           <div className="lg:col-span-4 md:col-span-2 col-span-1 flex flex-col gap-4 max-w-fit ">
             <Link href="/" className="flex-shrink-0 my-4 inline-block p-0">

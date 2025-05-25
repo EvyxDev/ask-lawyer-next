@@ -12,7 +12,7 @@ const page = async () => {
     <section>
       <Banner titleKey="legalInformation.legal_information" />
       <div className="flex flex-col gap-4 items-center justify-center">
-        <div className="mx-auto container p-4 xl:m-8 lg:m-6 m-4">
+        <div className="mx-auto container p-4 xl:m-8 lg:m-6 m-4 max-w-7xl">
           <div className="relative h-[40vh] flex justify-center items-center">
             <Image
               alt="Privacy Policy background"
@@ -33,7 +33,7 @@ const page = async () => {
               <Link
                 key={index}
                 href={link.href}
-                className="bg-secondary hover:bg-secondary-dark transition-all duration-700 2xl:w-82 xl:w-64 md:w-56 w-48 2xl:h-52 xl:h-48 lg:h-40 h-36 shrink-0 text-white flex flex-col gap-4 items-center justify-center rounded-lg shadow-md text-center xl:text-2xl lg:text-xl text-lg font-semibold p-4 "
+                className="bg-secondary hover:bg-secondary-dark transition-all duration-700  xl:w-64 md:w-56 w-48 2xl:h-52 xl:h-48 lg:h-40 h-36 shrink-0 text-white flex flex-col gap-4 items-center justify-center rounded-lg shadow-md text-center xl:text-2xl lg:text-xl text-lg font-semibold p-4 "
               >
                 <Image width={60} alt={t(`${link.key}`)} src={link.img} />
 

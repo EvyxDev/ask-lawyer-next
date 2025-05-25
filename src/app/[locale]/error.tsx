@@ -51,7 +51,7 @@ export default function Error({
         </p>
 
         {/* Action Buttons */}
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center md:flex-row flex-col gap-4">
           <button
             onClick={reset}
             className="2xl:px-6 px-5 py-3 bg-primary text-white text-xl font-semibold rounded-lg  hover:bg-primary-dark transition-all duration-300 cursor-pointer"

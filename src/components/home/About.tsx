@@ -22,7 +22,7 @@ async function AboutContent({ params }: { params: Params }) {
   }
   return (
     <section className="min-h-screen my-8">
-      <div className="w-full h-full flex justify-center items-center mx-auto p-4 container">
+      <div className="w-full h-full flex justify-center items-center mx-auto p-4 container max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-4">
           <div className="w-full flex justify-center items-center">
             <Image

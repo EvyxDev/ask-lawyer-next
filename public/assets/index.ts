@@ -28,5 +28,7 @@ import lawsAndRegulations from "./lawsAndRegulations.svg"
 import legalBlog from "./legalBlog.svg"
 import legalDic from "./legalDic.svg"
 import lawyerIcon from "./lawyerIcon.svg"
+import lawyerscompanyIcon from "./lawyerscompanyIcon.svg"
+import lawyersIcon2 from "./lawyersIcon2.svg"
 
-export {lawyerIcon, legalDic,legalBlog, lawsAndRegulations ,sendQuestion,chatRequest,getcall,clientIcon, mainlogo , UkIcon ,SaLogo ,mainlogo2 ,authbg ,hero1 ,hero2 ,requestoffer ,askservice ,chooselawyer ,consultantchat ,calllawyer ,asklawyer ,contactus ,iphone ,aboutus ,aboutusBg ,placeholder ,bannerBg ,privacyBg ,lawyersIcon ,HowProcessWorksBg} 
+export {lawyerscompanyIcon , lawyersIcon2 , lawyerIcon, legalDic,legalBlog, lawsAndRegulations ,sendQuestion,chatRequest,getcall,clientIcon, mainlogo , UkIcon ,SaLogo ,mainlogo2 ,authbg ,hero1 ,hero2 ,requestoffer ,askservice ,chooselawyer ,consultantchat ,calllawyer ,asklawyer ,contactus ,iphone ,aboutus ,aboutusBg ,placeholder ,bannerBg ,privacyBg ,lawyersIcon ,HowProcessWorksBg} 

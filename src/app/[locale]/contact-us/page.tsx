@@ -12,23 +12,22 @@ const footerResponse: FooterResponse = await getFooter();
   const footerData: FooterData | null = footerResponse.data;
   if (!footerData) {
     return (
-      <footer className="bg-secondary h-[30vh] w-full">
+      <div className="bg-secondary h-[30vh] w-full">
         <div className="mx-auto p-4 container h-full flex justify-center items-center">
           <div className="text-center text-red-500 lg:text-2xl text-xl">
             <p>
-              {t("error_loading") ||
-                "Failed to load footer data. Please try again later."}
+              {t("error_loading") }
             </p>
           </div>
         </div>
-      </footer>
+      </div>
     );
   }
 
   return (
     <section>
       <Banner titleKey="footer.contact_us" />
-      <div className="mx-auto container p-4">
+      <div className="mx-auto container p-4 max-w-7xl">
         <div className="flex flex-wrap gap-4 xl:justify-between justify-center items-center xl:h-[60vh] h-full p-4 my-6">
           <div className="relative size-82 bg-white rounded-2xl border-[2px] border-gray-100 p-8 my-6">
             <div className="absolute -top-12 left-1/2 transform -translate-x-1/2">

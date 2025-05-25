@@ -86,7 +86,10 @@ html {
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
-
+[data-radix-select-trigger] svg,
+.select-trigger svg:not(.custom-icon) {
+  display: none !important;
+}
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);

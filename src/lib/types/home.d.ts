@@ -33,7 +33,6 @@ declare interface PrivacyPolicyResponse {
   data: PrivacyPolicy;
   error?: string; 
 }
-
 declare interface HowProcessWorks {
   id:number;
   description_ar:string;
@@ -43,4 +42,15 @@ declare interface HowProcessWorksResponse {
   success: boolean;
   data: HowProcessWorks;
   error?: string; 
+}
+declare interface heroSectionTypes {
+ id:number;
+ title:string;
+ description:string;
+  images: string[]; 
+}
+declare interface HeroResponse {
+  success?: boolean;
+  data: HeroSectionType | null; 
+  error?: string;
 }

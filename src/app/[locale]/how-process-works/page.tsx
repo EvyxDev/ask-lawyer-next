@@ -11,7 +11,7 @@ const page = async () => {
     <section>
       <Banner titleKey="how-process-works" />
       <div className="flex flex-col items-center justify-center">
-        <div className="mx-auto container p-4 xl:m-8 lg:m-6 m-4">
+        <div className="mx-auto container max-w-7xl p-4 xl:m-8 lg:m-6 m-4">
           <div className="relative h-[40vh] flex justify-center items-center">
             <Image
               alt="Privacy Policy background"

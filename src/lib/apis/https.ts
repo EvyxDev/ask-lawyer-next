@@ -26,7 +26,6 @@ export const getFooter = async () => {
     };
   }
 };
-
 export const getPrivacyPolicy = async (): Promise<PrivacyPolicyResponse> => {
   try {
     const response = await fetch(`${API_URL}api/PrivacyPolicy`, {

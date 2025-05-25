@@ -54,9 +54,9 @@ export const getblogCategory = async (locale: string = "en") => {
     };
   }
 };
-export const getBlogs= async (id:number=1 ,page:number=1,limit:number=8) => {
+export const getBlogs= async (id:number=1 ,page:number=1,limit:number=8 ,order:string="desc") => {
   try {
-    const response = await fetch(`${API_URL}api/get-blogByCategory/${id}?page=${page}&limit=${limit}`, {
+    const response = await fetch(`${API_URL}api/get-blogByCategory/${id}?page=${page}&limit=${limit}&order=${order} `, {
       method: "GET",
       cache: "no-cache",
     });
@@ -97,6 +97,29 @@ export const getBlog= async (id:number) => {
 export const getAboutUs = async (locale: string = "en") => {
   try {
     const response = await fetch(`${API_URL}api/about-web`, {
+      method: "GET",
+      cache: "no-cache",
+      headers: {
+        "Accept-Language": locale, 
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch blog categories: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      data: null,
+      error: error instanceof Error ? error.message : "Unknown error fetching blog categories",
+    };
+  }
+};
+export const getHero = async (locale: string = "en"):Promise<HeroResponse> => {
+  try {
+    const response = await fetch(`${API_URL}api/info-section`, {
       method: "GET",
       cache: "no-cache",
       headers: {

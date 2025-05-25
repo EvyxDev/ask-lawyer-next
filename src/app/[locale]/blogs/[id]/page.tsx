@@ -6,12 +6,8 @@ import { IoArrowRedoOutline } from "react-icons/io5";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ClientImage } from "@/components/ClientImage";
 import { FaEye } from "react-icons/fa6";
-import Image from "next/image";
-import { lawyerIcon } from "../../../../../public/assets";
+import ActiveLawyers from "@/components/ActiveLawyers";
 
-interface BlogDetailsProps {
-  params: { id: string; locale: string };
-}
 
 async function fetchBlogMetadata(id: string) {
   const response: BlogDetailsResponse = await getBlog(Number(id));
@@ -32,12 +28,10 @@ async function fetchBlogMetadata(id: string) {
     },
   };
 }
-
 export async function generateMetadata({ params }: BlogDetailsProps) {
   const { id } = await params;
   return await fetchBlogMetadata(id);
 }
-
 async function BlogContent({ id }: { id: string }) {
   const response: BlogDetailsResponse = await getBlog(Number(id));
   const t = await getTranslations();
@@ -76,7 +70,7 @@ async function BlogContent({ id }: { id: string }) {
         <div className=" w-full mb-4 lg:col-span-8 col-span-1 rounded-md border-[1px] border-[#D8D8D8] ">
           <div className=" w-full mb-4 bg-gray-50">
             <div className="flex md:flex-row flex-col  justify-between p-4">
-              <h1 className="text-3xl font-bold mb-2">{title}</h1>
+              <h1 className="text-3xl font-bold mb-2 break-after-all">{title}</h1>
             <div className="flex flex-col gap-2 md:me-8 me-2">
               <span className="flex gap-2 items-center text-lg">
                 <FaEye className="text-primary" />
@@ -100,33 +94,11 @@ async function BlogContent({ id }: { id: string }) {
           </div>
           <p className="text-gray-600 mb-4 p-4">{description}</p>
         </div>
-        <div className="lg:col-span-4 col-span-1 bg-gray-50 rounded-md border-[1px] border-[#D8D8D8] p-4">
-          <h2 className="my-6 lg:text-4xl text-3xl font-semibold text-background-dark">
-            {t("active_lawyer")}
-          </h2>
-          <div className="flex flex-col gap-2">
-            <div className="flex gap-2 shadow-md rounded-md bg-white p-2">
-              <div className="rounded-full shrink-0">
-                <Image
-                  alt="user photo"
-                  width={20}
-                  height={20}
-                  className="rounded-full w-full"
-                  src={lawyerIcon}
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <p>محمد احمد ابراهيم</p>
-                <p className="font-semibold">جمهورية مصر العربية</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ActiveLawyers/>
       </div>
     </div>
   );
 }
-
 function BlogSkeleton() {
   return (
     <div className="container mx-auto py-8 p-4">
@@ -145,7 +117,6 @@ function BlogSkeleton() {
     </div>
   );
 }
-
 const Page = async ({ params }: BlogDetailsProps) => {
   const { id } = await params;
 
@@ -157,5 +128,4 @@ const Page = async ({ params }: BlogDetailsProps) => {
     </section>
   );
 };
-
 export default Page;

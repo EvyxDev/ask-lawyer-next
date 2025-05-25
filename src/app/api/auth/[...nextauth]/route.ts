@@ -11,6 +11,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
         user_type: { label: "User Type", type: "number" },
+        fcm_token: { label: "FCM Token", type: "text" }, 
       },
       async authorize(credentials) {
         if (
@@ -34,6 +35,7 @@ export const authOptions: NextAuthOptions = {
               email: credentials.email,
               password: credentials.password,
               user_type: credentials.user_type,
+              fcm_token: credentials.fcm_token || null, 
             }),
           });
 
@@ -47,7 +49,7 @@ export const authOptions: NextAuthOptions = {
             phone: data.data.user.mobile,
             name: data.data.user.name || null,
             email: data.data.user.email || null,
-            token: data.data.user.token,
+            token: data.data.token,
             fcm_token: data.fcm_token || null,
           } as CustomUser;
         } catch (error) {

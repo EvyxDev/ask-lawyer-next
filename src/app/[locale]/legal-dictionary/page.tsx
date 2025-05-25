@@ -1,8 +1,6 @@
 "use client";
 
 import Banner from "@/components/Banner";
-import Image from "next/image";
-import { lawyerIcon } from "../../../../public/assets";
 import { useLocale, useTranslations } from "next-intl";
 import { getBlogs } from "@/lib/apis/home";
 import { useQuery } from "@tanstack/react-query";
@@ -24,6 +22,17 @@ import {
   PaginationLink,
 } from "@/components/ui/pagination";
 import { Link } from "@/i18n/routing";
+import ActiveLawyers from "@/components/ActiveLawyers";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { IoFilter } from "react-icons/io5";
 
 interface Blog {
   id: number;
@@ -32,35 +41,37 @@ interface Blog {
   views: number;
   created_at: string;
 }
-
 const LegalDictionary = () => {
   const t = useTranslations("legalInformation");
   const locale = useLocale();
   const isRTL = locale === "ar";
   const [currentPage, setCurrentPage] = useState(1);
-  const blogsPerPage = 8;
+  const [order, setOrder] = useState<"desc" | "asc">("desc");
+  const blogsPerPage = 10;
 
   const {
     data: blogsData = { data: [], total: 0 },
     isLoading: isBlogsLoading,
   } = useQuery({
-    queryKey: ["blog-legal-dictionary", currentPage],
-    queryFn: () => getBlogs(1, currentPage, blogsPerPage),
+    queryKey: ["blog-legal-dictionary", currentPage, order],
+    queryFn: () => getBlogs(1, currentPage, blogsPerPage, order),
   });
 
   const totalBlogs = blogsData?.total || 0;
   const totalPages = Math.ceil(totalBlogs / blogsPerPage) || 1;
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
+  const handleOrderChange = (value: "desc" | "asc") => {
+    setOrder(value);
+    setCurrentPage(1);
+  };
   return (
     <section>
       <Banner titleKey="legalInformation.legal_dictionary" />
-      <div className="flex flex-col lg:gap-6 gap-4 items-center justify-center">
-        <div className="mx-auto container p-4 xl:m-8 lg:m-6 m-4 grid lg:grid-cols-12 grid-cols-1 gap-4">
+      <div className="flex flex-col lg:gap-6 gap-4 items-center justify-center ">
+        <div className="mx-auto container p-4 xl:m-8 lg:m-6 m-4 grid lg:grid-cols-12 grid-cols-1 lg:gap-6 gap-4 max-w-7xl">
           <div className="lg:col-span-8 col-span-1">
             <h2 className="my-6 lg:text-5xl text-4xl font-semibold text-background-dark">
               {t("legal_dictionary")}
@@ -68,6 +79,31 @@ const LegalDictionary = () => {
             <p className="text-[#666C89] xl:text-xl lg:text-lg text-md my-4">
               {t("legal_consultation_info")}
             </p>
+            <div className="flex justify-end w-full my-4">
+              <Select
+                dir={isRTL ? "rtl" : "ltr"}
+                onValueChange={handleOrderChange}
+                value={order}
+              >
+                <SelectTrigger className="w-[300px] relative focus:ring-0 select-trigger">
+                  <SelectValue placeholder={t("sort_by")} />
+                  <IoFilter
+                    className={`custom-icon absolute ${
+                      isRTL ? "left-3" : "right-3"
+                    } top-1/2 transform -translate-y-1/2 text-gray-500`}
+                    size={20}
+                  />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>{t("sort_by")}</SelectLabel>
+                    <SelectItem value="desc">{t("newest")}</SelectItem>
+                    <SelectItem value="asc">{t("oldest")}</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+
             <div className="flex flex-col gap-4">
               {isBlogsLoading ? (
                 Array.from({ length: 8 }).map((_, index) => (
@@ -102,7 +138,7 @@ const LegalDictionary = () => {
                           className="shrink-0"
                           size={30}
                         />
-                        <h2>{blog?.title}</h2>
+                        <h2 className="break-after-all">{blog?.title}</h2>
                       </div>
                       <p className="text-2xl">{blog?.description}</p>
                     </div>
@@ -260,28 +296,7 @@ const LegalDictionary = () => {
               </Pagination>
             </div>
           </div>
-          <div className="lg:col-span-4 col-span-1 bg-gray-50 rounded-md border-[1px] border-[#D8D8D8] p-4">
-            <h2 className="my-6 lg:text-4xl text-3xl font-semibold text-background-dark">
-              {t("active_lawyer")}
-            </h2>
-            <div className="flex flex-col gap-2">
-              <div className="flex gap-2 shadow-md rounded-md bg-white p-2">
-                <div className="rounded-full shrink-0">
-                  <Image
-                    alt="user photo"
-                    width={20}
-                    height={20}
-                    className="rounded-full w-full"
-                    src={lawyerIcon}
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <p>محمد احمد ابراهيم</p>
-                  <p className="font-semibold">جمهورية مصر العربية</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ActiveLawyers />
         </div>
       </div>
     </section>

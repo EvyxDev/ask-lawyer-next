@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { Link, usePathname } from "@/i18n/routing";
 import Image from "next/image";
@@ -22,14 +21,13 @@ const NavBar = () => {
   const t = useTranslations("navbar");
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <nav>
-      <div className="container mx-auto w-full px-4 flex justify-between gap-4 items-center transition duration-300 h-[126px] bg-transparent">
+      <div className="container mx-auto w-full px-4 flex justify-between gap-4 items-center transition duration-300 h-[126px] bg-transparent max-w-7xl">
         {/* Logo */}
         <Link href={"/"}>
           <Image
@@ -42,7 +40,7 @@ const NavBar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex 2xl:gap-8 xl:gap-6 gap-4 items-center flex-wrap">
+        <ul className="hidden lg:flex 2xl:gap-8 xl:gap-6 gap-4 items-center flex-wrap">
           {navBarLinks.map((link, index) => (
             <li key={index}>
               <Link
@@ -60,14 +58,14 @@ const NavBar = () => {
         </ul>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
+        <div className="lg:hidden flex items-center">
           <button className="text-pointer" onClick={toggleMenu} aria-label="Toggle menu">
               <HiMenuAlt3 size={30} className="cursor-pointer text-black" />
           </button>
         </div>
 
         {/* Right Section (User Menu and Language Switcher) - Visible on Desktop */}
-        <div className="hidden md:flex 2xl:gap-4 xl:gap-3 gap-2 justify-center items-center">
+        <div className="hidden lg:flex 2xl:gap-4 xl:gap-3 gap-2 justify-center items-center">
           <DropdownMenu>
             <DropdownMenuTrigger>
               <FaRegCircleUser size={30} className="cursor-pointer" />
@@ -106,10 +104,9 @@ const NavBar = () => {
           <ChangeLanguage />
         </div>
       </div>
-
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed top-0 left-0 w-screen h-screen bg-white !z-50 flex flex-col justify-center items-center">
+        <div className="lg:hidden fixed top-0 left-0 w-screen h-screen bg-white !z-50 flex flex-col justify-center items-center">
           <button
             onClick={toggleMenu}
             aria-label="Close menu"
