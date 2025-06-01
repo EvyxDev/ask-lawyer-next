@@ -66,8 +66,3 @@ declare interface BlogCategory {
     success: boolean;
     data: BlogDetails;
   }
-  declare interface BlogDetailsProps {
-    params: {
-      id: string; 
-    };
-  }

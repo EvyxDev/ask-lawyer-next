@@ -2,15 +2,13 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
-import { Tajawal } from "next/font/google"; 
-import NavBar from "@/components/NavBar";
+import { Tajawal } from "next/font/google";
 import Providers from "@/context/Providers";
-import Footer from "@/components/Footer";
 
 const tajawal = Tajawal({
-  subsets: ["arabic"], 
-  weight: ["400", "700"], 
-  variable: "--font-tajawal", 
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  variable: "--font-tajawal",
 });
 
 interface LayoutProps {
@@ -43,11 +41,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       className={tajawal.className}
     >
       <body>
-        <Providers>
-          <NavBar />
-          {children}
-          <Footer/>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

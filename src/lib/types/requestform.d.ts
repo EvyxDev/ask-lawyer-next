@@ -25,6 +25,23 @@ declare type Country = {
   name: string;
   translations: CountryTranslation[];
 };
+
+declare type City = {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+  is_activate: number;
+  name: string;
+  translations: CountryTranslation[];
+};
+declare type CityTranslation = {
+  id: number;
+ city_id: number;
+  locale: string;
+  name: string;
+};
+
 declare type CountriesResponse = {
   success?: boolean; 
   message?: string;

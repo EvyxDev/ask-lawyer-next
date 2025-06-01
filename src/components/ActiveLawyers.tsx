@@ -6,17 +6,17 @@ const ActiveLawyers = () => {
   const t = useTranslations();
 
   return (
-          <div className="md:col-span-3 col-span-1 gap-6  shadow rounded-md p-4">
-      <h2 className="my-6 lg:text-4xl text-3xl font-semibold text-background-dark">
+    <div className="hidden lg:block md:col-span-3 gap-6  bg-[#f0f0f0] rounded-md p-4">
+      <h2 className="my-6 2xl:text-3xl xl:text-2xl text-xl font-semibold text-background-dark">
         {t("active_lawyer")}
       </h2>
       <div className="flex flex-col gap-2">
-        <div className="flex gap-2 shadow-md rounded-md bg-white p-2">
-          <div className="rounded-full shrink-0">
+        <div className="flex xl:flex-row flex-col items-center gap-2 shadow-md rounded-md bg-white p-2">
+          <div className="rounded-full size-14 shrink-0">
             <Image
               alt="user photo"
-              width={20}
-              height={20}
+              width={15}
+              height={15}
               className="rounded-full w-full"
               src={lawyerIcon}
             />

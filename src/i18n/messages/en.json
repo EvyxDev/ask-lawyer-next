@@ -219,7 +219,9 @@
     "newest": "Newest",
     "oldest": "Oldest",
     "legal_information": "Legal Information",
-    "legal_consultation_info": "You can request a consultation from a lawyer here. The service is free and your identity is hidden. No registration is required. Ask your legal question and get a free answer from one of the lawyers via the Q&A section, live chat, or by phone. Just choose the method that suits you:"
+    "legal_consultation_info": "You can request a consultation from a lawyer here. The service is free and your identity is hidden. No registration is required. Ask your legal question and get a free answer from one of the lawyers via the Q&A section, live chat, or by phone. Just choose the method that suits you:",
+    "job-lawyer-request": "Job Application for a Lawyer",
+    "lawyerHiringRequest": "Lawyer Hiring Request"
   },
   "active_lawyer": "active lawyers",
   "choose_lawyer": "Request a Chat with a legal Consultant",
@@ -274,5 +276,130 @@
   },
   "ask-chat": "Ask Chat",
   "ask_call_lawyer": "Get a call with a lawyer",
-  "chat_with_consultant": "Chat With Consultant"
+  "chat_with_consultant": "Chat With Consultant",
+  "sidebar": {
+    "cases": "cases",
+    "messages": "messages",
+    "chat": "chat",
+    "questions": "questions",
+    "calls": "calls",
+    "request_offer": "Price List Request",
+    "blogs": "Blogs",
+    "settings": "settings",
+    "activites": "activites",
+    "chat_request": "chat requests",
+    "questions_request": "questions requests",
+    "calls_request": "calls requests",
+    "lawyerJobApplications": "Lawyer Job Applications"
+  },
+  "navbar-dashboard": {
+    "profile": "profile",
+    "search": "search",
+    "messages": "messages",
+    "chat": "chat",
+    "questions": "questions",
+    "calls": "calls",
+    "request-price-offer": "Price List Request",
+    "blogs": "Blogs",
+    "settings": "settings",
+    "lawyer-job-applications": "Lawyer Job Applications"
+  },
+  "settings-dashboard": {
+    "profile": "profile",
+    "subscription_plan": "subscription plan",
+    "reset-password": "reset password",
+    "change_language": "change language",
+    "NA": "unavailable",
+    "edit": "Edit",
+    "email": "email",
+    "name": "Name",
+    "job-title": "Job Title",
+    "countries": "countries",
+    "country": "country",
+    "phone": "phone number",
+    "address": "address",
+    "city": "Select City",
+    "cities": "Cities",
+    "profile_updated_successfully": "Profile updated successfully!",
+    "error_updating_profile": "Error updating profile",
+    "job_title_required": "Job title is required",
+    "name_required": "Name is required",
+    "email_required": "Email is required",
+    "invalid_email": "Please enter a valid email address",
+    "country_required": "Country is required",
+    "city_required": "City is required",
+    "phone_required": "Phone number is required",
+    "address_required": "Address is required",
+    "submitting": "Submitting...",
+    "save_changes": "Save Changes",
+    "invalid_image_type": "invalid image type",
+    "image_too_large": "image too large",
+    "current_password": "current password",
+    "new_password": "new password",
+    "new_password_confirmation": "new password confirmation",
+    "cancel": "cancel",
+    "submit": "submit",
+    "reset-password-description": "reset password description",
+    "password_updated": "password updated successfully"
+  },
+  "profile": "profile",
+  "subscriptions": "subscriptions",
+  "logout": "Log out",
+  "logout_confirm_title": "Confirm Logout",
+  "logout_confirm_description": "Are you sure you want to log out?",
+  "cancel": "Cancel",
+  "HireRequest": {
+    "title": "Hire Request #{id}",
+    "auth": {
+      "title": "Please Authenticate",
+      "message": "You need to log in to view this request.",
+      "loginButton": "Go to Login"
+    },
+    "error": {
+      "title": "Error",
+      "message": "Failed to load request details."
+    },
+    "client": {
+      "label": "Client",
+      "requestStatus": "Request Status"
+    },
+    "createdAt": {
+      "label": "Created At :"
+    },
+    "details": {
+      "title": "Request Details",
+      "message": "Message",
+      "summary": "Summary",
+      "acceptedBy": "Accepted By"
+    },
+    "service": {
+      "title": "Service Information",
+      "name": "Service",
+      "description": "Description"
+    },
+    "files": {
+      "title": "Attached Files",
+      "attachment": "Attachment",
+      "viewFile": "View File {index}"
+    },
+    "rating": {
+      "rated": "Rated",
+      "submitButton": "Submit Rating",
+      "dialogTitle": "Rate This Service",
+      "submitRating": "Submit Rating",
+      "submitting": "Submitting...",
+      "successTitle": "Rating Submitted",
+      "successMessage": "Thank you for your feedback!",
+      "errorTitle": "Error",
+      "errorMessage": "Failed to submit rating. Please try again."
+    },
+    "status": {
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "rejected": "Rejected",
+      "completed": "completed"
+    },
+    "clickrate": "Click to rate",
+    "commentLabel": "Do you have a comment?"
+  }
 }

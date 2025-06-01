@@ -13,3 +13,9 @@ declare type ForgotPasswordFields = {
 };
 
 declare type LoginResponse = User;
+
+declare interface changePassword  {
+  current_password: string;
+  new_password: string;
+  new_password_confirmation: string;
+};

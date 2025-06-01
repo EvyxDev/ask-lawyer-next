@@ -38,7 +38,6 @@ const NavBar = () => {
             quality={100}
           />
         </Link>
-
         {/* Desktop Navigation */}
         <ul className="hidden lg:flex 2xl:gap-8 xl:gap-6 gap-4 items-center flex-wrap">
           {navBarLinks.map((link, index) => (
@@ -56,14 +55,12 @@ const NavBar = () => {
             </li>
           ))}
         </ul>
-
         {/* Mobile Menu Button */}
         <div className="lg:hidden flex items-center">
           <button className="text-pointer" onClick={toggleMenu} aria-label="Toggle menu">
               <HiMenuAlt3 size={30} className="cursor-pointer text-black" />
           </button>
         </div>
-
         {/* Right Section (User Menu and Language Switcher) - Visible on Desktop */}
         <div className="hidden lg:flex 2xl:gap-4 xl:gap-3 gap-2 justify-center items-center">
           <DropdownMenu>

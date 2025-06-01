@@ -14,6 +14,7 @@ import { getHero } from "@/lib/apis/home";
 const HeroSection = () => {
   const t = useTranslations("hero");
   const locale = useLocale();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data: HeroData, isLoading: isHeroLoading } = useQuery({
     queryKey: ["hero"],
     queryFn: () => getHero(locale),

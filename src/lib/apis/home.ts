@@ -74,7 +74,7 @@ export const getBlogs= async (id:number=1 ,page:number=1,limit:number=8 ,order:s
     };
   }
 };
-export const getBlog= async (id:number) => {
+export const getBlog= async (id:string) => {
   try {
     const response = await fetch(`${API_URL}api/get-blog/${id}`, {
       method: "GET",

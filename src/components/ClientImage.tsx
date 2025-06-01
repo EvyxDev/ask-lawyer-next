@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { placeholder } from "../../public/assets";
-
+const placeholder = "/assets/placeholder.png"; 
 // Import ImageProps from next/image for type safety
 import type { ImageProps } from "next/image";
 

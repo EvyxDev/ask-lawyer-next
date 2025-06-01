@@ -10,7 +10,7 @@ interface Params {
 }
 async function AboutContent({ params }: { params: Params }) {
   const t = await getTranslations();
-  const { locale } = await params;
+ const { locale } = params;
   const response: AboutResponse = await getAboutUs(locale);
 
   if (!response.success || !response.data) {

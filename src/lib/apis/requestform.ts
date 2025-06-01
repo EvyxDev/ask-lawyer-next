@@ -47,7 +47,6 @@ export const sendRequestForm = async ({
     throw err;
   }
 };
-
 export const getCountries = async (
   locale: string = "en"
 ): Promise<CountriesResponse> => {
@@ -78,7 +77,37 @@ export const getCountries = async (
     };
   }
 };
+export const getCities = async (
+  locale: string = "en",
+  country:string
+): Promise<CountriesResponse> => {
+  try {
+    const response = await fetch(`${API_URL}api/countries/${country}/cities`, {
+      method: "GET",
+      cache: "no-cache",
+      headers: {
+        "Accept-Language": locale,
+      },
+    });
 
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch blog categories: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      data: null,
+      error:
+        error instanceof Error
+          ? error.message
+          : "Unknown error fetching blog categories",
+    };
+  }
+};
 export const getLanguages = async (
   locale: string = "en"
 ): Promise<LanguageResponse> => {
