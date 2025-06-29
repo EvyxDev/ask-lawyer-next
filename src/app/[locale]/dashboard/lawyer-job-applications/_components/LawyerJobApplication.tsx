@@ -1,6 +1,5 @@
 "use client";
-
-import { getHireRequests } from "@/lib/apis/activites";
+import { getHireRequests, getHireRequestslawyer } from "@/lib/apis/activites";
 import { useQuery } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
@@ -15,13 +14,14 @@ import {
 } from "@/components/ui/select";
 import { IoFilter } from "react-icons/io5";
 import CustomPagination from "@/components/CustomPagination";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { BriefcaseBusiness } from "lucide-react";
 import useFormatDate from "@/hooks/useFormatDate";
 import { Skeleton } from "@/components/ui/skeleton";
 import ActiveLawyers from "@/components/ActiveLawyers";
 import { Button } from "@/components/ui/button";
 import { IoIosAdd } from "react-icons/io";
+import { useSession } from "next-auth/react";
 
 const LawyerJobApplication = () => {
   const locale = useLocale();
@@ -31,18 +31,43 @@ const LawyerJobApplication = () => {
   const isRTL = locale === "ar";
   const t = useTranslations("legalInformation");
   const formatDate = useFormatDate();
+  const { data: session, status } = useSession();
 
+  const role = session?.user?.role;
+const router = useRouter()
+  const {
+    data: lawyerData,
+    isLoading: lawyerIsLoading,
+    isError: isLawyerError,
+    error: errorLawyer,
+  } = useQuery<ActivitiesResponse>({
+    queryKey: ["hire-Requests-lawyer", locale, currentPage, order],
+    queryFn: () =>
+      getHireRequestslawyer(locale, currentPage, blogsPerPage, order),
+    enabled: role === 1,
+  });
+
+  // Query for client data
   const { data, isLoading, isError, error } = useQuery<ActivitiesResponse>({
     queryKey: ["hire-Requests", locale, currentPage, order],
     queryFn: () => getHireRequests(locale, currentPage, blogsPerPage, order),
+    enabled: role === 2, // Only fetch if role is 2
   });
+
+  // Select the appropriate data based on role
+  const selectedData = role === 1 ? lawyerData : role === 2 ? data : null;
+  const isSelectedLoading =
+    role === 1 ? lawyerIsLoading : role === 2 ? isLoading : false;
+  const isSelectedError =
+    role === 1 ? isLawyerError : role === 2 ? isError : false;
+  const selectedError = role === 1 ? errorLawyer : role === 2 ? error : null;
 
   const handleOrderChange = (value: "desc" | "asc") => {
     setOrder(value);
     setCurrentPage(1);
   };
 
-  if (isLoading)
+  if (isSelectedLoading || status === "loading")
     return (
       <section className="lg:m-6 md:m-5 bg-white rounded-lg p-4">
         <div className="flex justify-start w-full my-4">
@@ -72,17 +97,23 @@ const LawyerJobApplication = () => {
       </section>
     );
 
-  if (isError) return <section>Error: {error.message}</section>;
-  if (!data?.data?.data) return <section>No job data available</section>;
+  if (isSelectedError)
+    return <section>Error: {selectedError?.message}</section>;
+  if (!selectedData?.data?.data)
+    return (
+      <section className="h-screen flex justify-center items-center ">
+        {t("no_data_available")}{" "}
+      </section>
+    );
 
-  const request = data.data.data;
+  const request = selectedData.data.data;
   const totalJobs = request?.total ?? 0;
 
   return (
     <section>
       <div className="lg:m-6 md:m-4 m-0 bg-[#FFFFFF] rounded-lg shadow-md p-4">
         <div className="grid lg:grid-cols-12 grid-cols-1 lg:gap-8 md:gap-6 gap-4">
-          <div className="lg:col-span-9 col-span-1 h-full ">
+          <div className="lg:col-span-9 col-span-1 h-full">
             <div className="flex md:flex-row flex-col gap-4 justify-between w-full my-4">
               <Select
                 dir={isRTL ? "rtl" : "ltr"}
@@ -106,18 +137,20 @@ const LawyerJobApplication = () => {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              <Button className="bg-secondary hover:bg-secondary-dark">
-                <IoIosAdd />
-                {t("lawyerHiringRequest")}
-              </Button>
+              {role === 2 && (
+                <Button onClick={()=>router.push("/hire-lawyer")} className="bg-secondary hover:bg-secondary-dark">
+                  <IoIosAdd />
+                  {t("lawyerHiringRequest")}
+                </Button>
+              )}
             </div>
-            <div className=" flex justify-center max-w-6xl mx-auto container h-full">
+            <div className="flex justify-center max-w-6xl mx-auto container h-full">
               <div className="lg:p-8 md:p-4 p-0 max-w-5xl w-full flex flex-col lg:gap-8 md:gap-6 gap-4">
                 <div className="flex flex-col gap-4 items-center">
                   {request?.data.map((job: HireRequest) => (
                     <Link
                       href={`/dashboard/lawyer-job-applications/${job.id}`}
-                      className="bg-[#FFFFFF] rounded-lg shadow-md flex flex-col justify-center max-w-6xl mx-auto container gap-4 h-full lg:p-4 p-3 "
+                      className="bg-[#FFFFFF] rounded-lg shadow-md flex flex-col justify-center max-w-6xl mx-auto container gap-4 h-full lg:p-4 p-3"
                       key={job.id}
                     >
                       <div className="w-full flex flex-wrap justify-between">
@@ -136,17 +169,16 @@ const LawyerJobApplication = () => {
                     </Link>
                   ))}
                 </div>
-                  <div className="md:my-6 my-4">
-                <CustomPagination
-                  currentPage={currentPage}
-                  totalItems={totalJobs}
-                  itemsPerPage={blogsPerPage}
-                  onPageChange={setCurrentPage}
-                  maxPagesToShow={4}
-                />
+                <div className="md:my-6 my-4">
+                  <CustomPagination
+                    currentPage={currentPage}
+                    totalItems={totalJobs}
+                    itemsPerPage={blogsPerPage}
+                    onPageChange={setCurrentPage}
+                    maxPagesToShow={4}
+                  />
+                </div>
               </div>
-              </div>
-            
             </div>
           </div>
           <ActiveLawyers />

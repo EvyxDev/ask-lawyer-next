@@ -1,4 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+import { QueryFunctionContext } from "@tanstack/react-query";
 
 export const sendContactForm = async ({
   name,
@@ -139,4 +140,42 @@ export const getHero = async (locale: string = "en"):Promise<HeroResponse> => {
       error: error instanceof Error ? error.message : "Unknown error fetching blog categories",
     };
   }
+};
+
+
+export const fetchSearchResults = async ({
+  queryKey,
+  pageParam = 1,
+}: QueryFunctionContext<string[], number>): Promise<ApiResponse> => {
+  const [, keyword, type, sortOption, legalFieldId, categoryId] = queryKey; 
+
+  const params = new URLSearchParams({
+    keyword: keyword || "",
+    page: pageParam.toString(),
+    per_page: "10",
+    type: type || "blogs",
+  });
+
+  const optionalParams: { [key: string]: string } = {
+    legal_field_id: legalFieldId || "",
+    arrange_by_rate: sortOption === "highest_rated" ? "true" : "",
+    arrange_by_score_point: sortOption === "most_active" ? "true" : "",
+    category: categoryId || "",
+  };
+
+  Object.entries(optionalParams).forEach(([key, value]) => {
+    if (value) {
+      params.append(key, value);
+    }
+  });
+
+  const response = await fetch(`https://asklawyer.evyx.lol/api/unified-search?${params}`, {
+    method: "GET",
+    redirect: "follow",
+  });
+
+  if (!response.ok) throw new Error("Failed to fetch search results");
+
+  const data = await response.json() as ApiResponse;
+  return { ...data, success: data.success ?? false };
 };

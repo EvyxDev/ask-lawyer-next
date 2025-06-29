@@ -27,7 +27,7 @@ const page = async () => {
           <p className="text-[#666C89] xl:text-xl lg:text-lg text-md max-w-xl">
             {t("legal_advice_description")}
           </p>
-          <div className="flex gap-4 my-4 w-full">
+          <div className="flex justify-center gap-4 my-4 w-full">
             <Link
               href="/how-process-works-lawyers"
               className="bg-secondary hover:bg-secondary-dark transition-all duration-700 w-1/2 2xl:h-48 lg:h-40 h-36 shrink-0 text-white flex flex-col gap-4 items-center justify-center rounded-lg shadow-md text-center xl:text-2xl lg:text-xl text-lg font-semibold p-4 "

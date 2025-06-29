@@ -46,12 +46,12 @@ const ContactUsForm = () => {
     });
   };
   return (
-    <div className="w-full ">
+    <div className="w-full p-4">
       <div className="flex gap-4 items-center my-8">
-        <h2 className="lg:text-5xl text-4xl text-primary my-8 font-semibold">
+        <h2 className="lg:text-5xl md:text-4xl  text-3xl text-primary my-8 font-semibold">
           {t("title")}
         </h2>
-        <div className="bg-secondary lg:w-36 w-32 h-[6px] mt-4"></div>
+        <div className="bg-secondary lg:w-36 md:w-32 w-28 h-[6px] mt-4"></div>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}

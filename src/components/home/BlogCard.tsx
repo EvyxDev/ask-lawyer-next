@@ -22,10 +22,13 @@ export default function BlogCard({
           />
         </div>
         <div className="p-5 shadow border-2">
-          <div className="flex items-center gap-2 text-gray-500 mb-3">
-            <CalendarIcon className="w-4 h-4" />
-            <span className="text-sm">{created_at}</span>
-          </div>
+          {created_at && (
+            <div className="flex items-center gap-2 text-gray-500 mb-3">
+              <CalendarIcon className="w-4 h-4" />
+              <span className="text-sm">{created_at}</span>
+            </div>
+          )}
+
           <h3 className={`text-xl font-bold mb-3 text-gray-800 truncate `}>
             {title}
           </h3>

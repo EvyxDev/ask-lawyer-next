@@ -77,6 +77,36 @@ export const getCountries = async (
     };
   }
 };
+export const getActiveCompanies = async (
+  locale: string = "en"
+): Promise<CountriesResponse> => {
+  try {
+    const response = await fetch(`${API_URL}api/auth/active-companies-for-register`, {
+      method: "GET",
+      cache: "no-cache",
+      headers: {
+        "Accept-Language": locale,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch blog categories: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      data: null,
+      error:
+        error instanceof Error
+          ? error.message
+          : "Unknown error fetching active companies",
+    };
+  }
+};
 export const getCities = async (
   locale: string = "en",
   country:string
@@ -105,6 +135,38 @@ export const getCities = async (
         error instanceof Error
           ? error.message
           : "Unknown error fetching blog categories",
+    };
+  }
+};
+export const getlegalFileds = async (
+  locale: string = "en"
+): Promise<LanguageResponse> => {
+  try {
+    const response = await fetch(`${API_URL}api/legalFileds`, {
+      method: "GET",
+      cache: "no-cache",
+      headers: {
+        "Accept-Language": locale,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch blog categories: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      success: false,
+      message: "Failed to fetch languages",
+      data: null,
+      error:
+        error instanceof Error
+          ? error.message
+          : "Unknown error fetching languages",
     };
   }
 };
@@ -140,7 +202,6 @@ export const getLanguages = async (
     };
   }
 };
-
 export const getLawyers = async (): Promise<LawyersResponse> => {
   try {
     const response = await fetch(`${API_URL}api/getLawyers`, {

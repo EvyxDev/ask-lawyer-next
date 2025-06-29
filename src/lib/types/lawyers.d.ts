@@ -25,7 +25,7 @@ declare interface ApiResponseLawyers {
   };
 }
 
-interface Lawyer {
+declare interface Lawyer {
   id: number;
   name: string;
   email: string;

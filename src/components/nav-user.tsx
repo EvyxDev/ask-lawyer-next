@@ -17,19 +17,10 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { logout } from "@/lib/actions/auth";
-import { signOut } from "next-auth/react";
+
 import { useRouter } from "@/i18n/routing";
+import { LogoutDialog } from "./LogoutDialog";
+import { useState } from "react";
 
 export function NavUser({
   user,
@@ -42,25 +33,10 @@ export function NavUser({
   const { isMobile } = useSidebar();
   const t = useTranslations();
   const router = useRouter();
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
   const handleNavigation = (path: string) => {
     router.push(path);
   };
-
-  // Handle logout
-  const handleLogout = async () => {
-    try {
-      const result = await logout();
-      signOut();
-      router.push("auth/login");
-      console.log(result);
-      setIsLogoutModalOpen(false);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "خطأ غير معروف");
-    }
-  };
+  const [showLogout, setShowLogout] = useState(false);
 
   return (
     <>
@@ -109,7 +85,7 @@ export function NavUser({
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => setIsLogoutModalOpen(true)}>
+              <DropdownMenuItem onClick={() => setShowLogout(true)}>
                 <LogOut className="mr-2 h-4 w-4" />
                 {t("logout")}
               </DropdownMenuItem>
@@ -117,27 +93,7 @@ export function NavUser({
           </DropdownMenu>
         </SidebarMenuItem>
       </SidebarMenu>
-      <Dialog open={isLogoutModalOpen} onOpenChange={setIsLogoutModalOpen}>
-        <DialogContent className="sm:max-w-sm flex flex-col gap-8 items-center text-center">
-          <DialogHeader className="flex flex-col gap-4">
-            <DialogTitle className="text-center">
-              {t("logout_confirm_title")}
-            </DialogTitle>
-            <DialogDescription>
-              {error || t("logout_confirm_description")}
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button
-              className="border-primary border-2 text-primary hover:bg-primary hover:text-white bg-transparent"
-              onClick={() => setIsLogoutModalOpen(false)}
-            >
-              {t("cancel")}
-            </Button>
-            <Button onClick={handleLogout}>{t("logout")}</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <LogoutDialog open={showLogout} onOpenChange={setShowLogout} />
     </>
   );
 }

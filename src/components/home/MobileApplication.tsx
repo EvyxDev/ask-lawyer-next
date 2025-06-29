@@ -19,12 +19,11 @@ const MobileApplication = async () => {
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-45 z-10" />
-
       {/* Content Layer */}
-      <div className="relative z-20 h-full w-full grid grid-cols-12 mx-auto container px-4">
+      <div className="relative z-20 h-full w-full grid md:grid-cols-12 grid-cols-1 mx-auto container px-4">
         {/* iPhone image at bottom right */}
         <div className="col-span-6 lg:relative static">
-          <div className="absolute bottom-0 start-0">
+          <div className="md:absolute hidden bottom-0 start-0 ">
             <Image
               src={iphone}
               alt="iphone"
@@ -35,7 +34,7 @@ const MobileApplication = async () => {
         </div>
 
         {/* Text on the left */}
-        <div className="col-span-6 flex items-center justify-center flex-col lg:gap-8 md:gap-6 gap-4">
+        <div className="md:col-span-6 col-span-1 flex items-center justify-center flex-col lg:gap-8 md:gap-6 gap-4">
           <h2 className="2xl:text-7xl xl:text-6xl lg:text-5xl text-4xl font-bold text-primary">
             {t("Download the app")}
           </h2>

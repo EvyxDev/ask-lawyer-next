@@ -25,7 +25,7 @@ const page = async () => {
               />
             </div>
             <div className="grid md:grid-cols-12 grid-cols-2 lg:my-8 md:my-6 my-4">
-              <div className="md:col-span-8 col-span-2">
+              <div className="md:col-span-9 col-span-2">
                 <h2 className="my-4 lg:text-4xl text-3xl font-semibold text-background-dark">
                   {t("chat_with_consultant")}
                 </h2>

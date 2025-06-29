@@ -1,10 +1,7 @@
+import RequestPriceOffer from "./_components/RequestPriceOffer";
 
 const page = () => {
-  return (
-    <div>
-      request_offer
-    </div>
-  )
-}
+  return <RequestPriceOffer />;
+};
 
-export default page
+export default page;

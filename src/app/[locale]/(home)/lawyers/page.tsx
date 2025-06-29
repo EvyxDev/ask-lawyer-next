@@ -23,7 +23,6 @@ import ActiveLawyers from "@/components/ActiveLawyers";
 import { IoMdStar } from "react-icons/io";
 import { MdLanguage } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
-
 import {
   Select,
   SelectContent,
@@ -69,6 +68,7 @@ const Lawyers = () => {
     setOrder(value);
     setCurrentPage(1);
   };
+
   if (error) {
     return (
       <div className="col-span-full text-center py-10">
@@ -148,7 +148,7 @@ const Lawyers = () => {
               ) : (
                 lawyersData.map((lawyer: Lawyers) => (
                   <div
-                    className="bg-white rounded-lg  overflow-hidden"
+                    className="bg-white rounded-lg overflow-hidden"
                     key={lawyer.id}
                   >
                     <div className="relative h-56 w-full">
@@ -160,66 +160,73 @@ const Lawyers = () => {
                         priority
                       />
                     </div>
-                    <div className="p-4 shadow border-2">
-                      <div className="flex justify-between my-1 border-b-[2px] border-b-gray-700 ">
-                        <h3 className="text-xl font-bold  text-[#000000] truncate flex items-center gap-1">
-                          {lawyer.name}
-                          <FaCrown className="text-yellow-500" />
-                        </h3>
-                        <p className="text-xl font-bold  text-[#000000] truncate flex items-center gap-1">
-                          <BiSolidBarChartAlt2 />
+                    <div className="p-4 shadow border-2 min-h-[200px] flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between my-1 border-b-[2px] border-b-gray-700">
+                          <h3 className="text-xl font-bold text-[#000000] truncate flex items-center gap-1">
+                            {lawyer.name}
+                            <FaCrown className="text-yellow-500 shrink-0" />
+                          </h3>
+                          <p className="text-xl font-bold text-[#000000] truncate flex items-center gap-1">
+                            <BiSolidBarChartAlt2 />
+                            {lawyer.score_points}
+                          </p>
+                        </div>
 
-                          {lawyer.score_points}
-                        </p>
-                      </div>
+                        <div className="flex justify-between my-1">
+                          <h3 className="text-lg font-bold text-[#000000] truncate flex items-center gap-1">
+                            <IoPersonCircleOutline className="text-xl" />
+                            {lawyer.title}
+                          </h3>
+                          <p className="text-lg font-bold text-[#000000] truncate flex items-center gap-1">
+                            <IoMdStar className="text-yellow-500 text-xl" />
+                            {lawyer.rate}
+                          </p>
+                        </div>
 
-                      <div className="flex justify-between my-1  ">
-                        <h3 className="text-lg font-bold  text-[#000000] truncate flex items-center gap-1">
-                          <IoPersonCircleOutline className=" text-xl" />
+                        <div className="flex justify-between my-1">
+                          <p className="text-lg font-bold text-[#000000] flex items-center gap-1 truncate">
+                            <MdLanguage className="text-xl shrink-0" />
+                            {lawyer.languages.length > 0 ? (
+                              <>
+                              {lawyer.languages.slice(0, 2).map((field, index) => (
+                                <span key={index}>
+                                  {field}
+                                  {index < Math.min(1, lawyer.languages.length - 1) && " , "}
+                                </span>
+                              ))}
+                              {lawyer.languages.length > 2 && " ..."}
+                            </>
+                            ) : (
+                              <span>N/A</span>
+                            )}
+                          </p>
+                          <p className="text-lg font-bold text-[#000000] truncate flex items-center gap-1">
+                            <CiLocationOn className="text-xl shrink-0" />
+                            {lawyer.country}
+                          </p>
+                        </div>
 
-                          {lawyer.title}
-                        </h3>
-                        <p className="text-lg font-bold   text-[#000000] truncate flex items-center gap-1">
-                          <IoMdStar className="text-yellow-500 text-xl" />
-                          {lawyer.rate}
-                        </p>
-                      </div>
-                      <div className="flex justify-between my-1 ">
-                        <p className="text-lg font-bold text-[#000000] flex items-center gap-1 flex-wrap my-1">
-                          <MdLanguage className="text-xl" />
-                          {lawyer.languages.length > 0 ? (
-                            lawyer.languages.map((field, index) => (
-                              <span key={index}>
-                                {field}
-                                {index < lawyer.languages.length - 1 && " , "}
-                              </span>
-                            ))
+                   <p className="text-lg font-bold text-[#000000] flex items-center gap-1 truncate">
+                          <MdOutlineWork className="text-xl shrink-0" />
+                          {lawyer.legal_fields.length > 0 ? (
+                            <>
+                              {lawyer.legal_fields.slice(0, 1).map((field, index) => (
+                                <span key={index}>
+                                  {field}
+                                  {index < Math.min(1, lawyer.legal_fields.length - 1) && " , "}
+                                </span>
+                              ))}
+                              {lawyer.legal_fields.length > 1 && " ..."}
+                            </>
                           ) : (
                             <span>N/A</span>
                           )}
                         </p>
-                        <p className="text-lg font-bold   text-[#000000] truncate flex items-center gap-1">
-                          <CiLocationOn className=" text-xl" />
-                          {lawyer.country}
-                        </p>
                       </div>
-
-                      <p className="text-lg font-bold text-[#000000] flex items-center gap-1 flex-wrap my-1">
-                        <MdOutlineWork className="text-xl" />
-                        {lawyer.legal_fields.length > 0 ? (
-                          lawyer.legal_fields.map((field, index) => (
-                            <span key={index}>
-                              {field}
-                              {index < lawyer.legal_fields.length - 1 && " , "}
-                            </span>
-                          ))
-                        ) : (
-                          <span>N/A</span>
-                        )}
-                      </p>
                       <button
                         onClick={() => router.push(`/lawyers/${lawyer.id}`)}
-                        className="bg-primary hover:bg-primary-dark  transition-all duration-700 text-white w-full rounded-md py-3 text-xl cursor-pointer"
+                        className="bg-primary hover:bg-primary-dark transition-all duration-700 text-white w-full rounded-md py-3 text-xl cursor-pointer mt-2"
                       >
                         {t("details")}
                       </button>
@@ -229,7 +236,6 @@ const Lawyers = () => {
               )}
             </div>
 
-            {/* Pagination Component */}
             <div className="mt-6">
               <Pagination>
                 <PaginationContent>

@@ -2,7 +2,7 @@ import { usePathname, useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { SaLogo, UkIcon } from "../../public/assets";
+import { salogo, ukicon } from "../../public/assets";
 
 const ChangeLanguage = () => {
   const locale = useLocale();
@@ -25,7 +25,7 @@ const ChangeLanguage = () => {
           quality={100}
           className="rounded-lg"
           alt={locale === "ar" ? "saudi arabia" : "united kingdom"}
-          src={locale === "ar" ? UkIcon  : SaLogo}
+          src={locale === "ar" ? ukicon  : salogo}
         />
       </div>
   );

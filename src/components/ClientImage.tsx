@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-const placeholder = "/assets/placeholder.png"; 
-// Import ImageProps from next/image for type safety
 import type { ImageProps } from "next/image";
+import { placeholder } from "../../public/assets";
 
 export function ClientImage({ src, alt, ...props }: ImageProps) {
   const [error, setError] = useState(false);

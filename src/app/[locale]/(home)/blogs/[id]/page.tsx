@@ -28,9 +28,9 @@ async function BlogContent({ id }: { id: string }) {
     response.data;
 
   return (
-    <div className="container mx-auto py-8 p-4">
+    <div className="container mx-auto max-w-7xl py-8 p-4">
       <Link
-        href="/blog"
+        href="/blogs"
         className="inline-flex items-center justify-center gap-2 text-primary hover:text-primary-dark my-6 mx-4 transition-colors duration-300 text-2xl"
       >
         <IoArrowRedoOutline className="rtl:-translate-x-1 ltr:scale-x-[-1] ltr:translate-x-1" />

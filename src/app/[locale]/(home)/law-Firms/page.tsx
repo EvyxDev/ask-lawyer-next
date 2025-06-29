@@ -184,41 +184,47 @@ const LawsFirm = () => {
                         </p>
                       </div>
                       <div className="flex justify-between my-1 ">
-                        <p className="text-lg font-bold text-[#000000] flex items-center gap-1 flex-wrap my-1">
-                          <MdLanguage className="text-xl" />
-                          {lawyer.languages.length > 0 ? (
-                            lawyer.languages.map((field, index) => (
-                              <span key={index}>
-                                {field}
-                                {index < lawyer.languages.length - 1 && " , "}
-                              </span>
-                            ))
-                          ) : (
-                            <span>N/A</span>
-                          )}
-                        </p>
+                           <p className="text-lg font-bold text-[#000000] flex items-center gap-1 truncate">
+                                                      <MdLanguage className="text-xl shrink-0" />
+                                                      {lawyer.languages.length > 0 ? (
+                                                        <>
+                                                        {lawyer.languages.slice(0, 2).map((field, index) => (
+                                                          <span key={index}>
+                                                            {field}
+                                                            {index < Math.min(1, lawyer.languages.length - 1) && " , "}
+                                                          </span>
+                                                        ))}
+                                                        {lawyer.languages.length > 2 && " ..."}
+                                                      </>
+                                                      ) : (
+                                                        <span>N/A</span>
+                                                      )}
+                                                    </p>
                         <p className="text-lg font-bold   text-[#000000] truncate flex items-center gap-1">
-                          <CiLocationOn className=" text-xl" />
+                          <CiLocationOn className="text-xl shrink-0"  />
                           {lawyer.country}
                         </p>
                       </div>
 
-                      <p className="text-lg font-bold text-[#000000] flex items-center gap-1 flex-wrap my-1">
-                        <MdOutlineWork className="text-xl" />
-                        {lawyer.legal_fields.length > 0 ? (
-                          lawyer.legal_fields.map((field, index) => (
-                            <span key={index}>
-                              {field}
-                              {index < lawyer.legal_fields.length - 1 && " , "}
-                            </span>
-                          ))
-                        ) : (
-                          <span>N/A</span>
-                        )}
-                      </p>
+                     <p className="text-lg font-bold text-[#000000] flex items-center gap-1 truncate">
+                          <MdOutlineWork className="text-xl shrink-0" />
+                          {lawyer.legal_fields.length > 0 ? (
+                            <>
+                              {lawyer.legal_fields.slice(0, 1).map((field, index) => (
+                                <span key={index}>
+                                  {field}
+                                  {index < Math.min(1, lawyer.legal_fields.length - 1) && " , "}
+                                </span>
+                              ))}
+                              {lawyer.legal_fields.length > 1 && " ..."}
+                            </>
+                          ) : (
+                            <span>N/A</span>
+                          )}
+                        </p>
                       <button
-                        onClick={() => router.push(`/law-Firms/${lawyer.id}`)}
-                        className="bg-primary hover:bg-primary-dark  transition-all duration-700 text-white w-full rounded-md py-3 text-xl cursor-pointer"
+                        onClick={() => router.push(`/law-firms/${lawyer.id}`)}
+                        className="bg-primary hover:bg-primary-dark transition-all duration-700 text-white w-full rounded-md py-3 text-xl cursor-pointer mt-2"
                       >
                         {t("details")}
                       </button>

@@ -26,12 +26,12 @@ const page = async () => {
             {t("ask-service")}
           </h2>
 
-          <div className=" flex items-center  gap-4  flex-wrap ">
+          <div className=" flex items-center justify-center md:gap-4 gap-2  flex-wrap ">
             {servicesLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
-                className="overflow-hidden bg-secondary hover:bg-secondary-dark transition-all duration-700   w-48   h-40  shrink-0 text-white flex flex-col gap-4 items-center justify-center rounded-lg shadow-md text-center  lg:text-xl md:text-lg text-md font-semibold p-4 "
+                className="overflow-hidden bg-secondary hover:bg-secondary-dark transition-all duration-700 md:gap-4 gap-2  lg:w-48 md:w-44 w-40  lg:h-40 md:h-36 h-32  shrink-0 text-white flex flex-col  items-center justify-center rounded-lg shadow-md text-center  xl:text-xl lg:text-lg md:text-md text-sm font-semibold lg:p-4 md:p-3 p-2 "
               >
                 <Image width={50} alt={t(`hero.${link.key}`)} src={link.img} />
 

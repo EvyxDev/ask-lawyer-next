@@ -12,7 +12,9 @@ const nextConfig: NextConfig = {
         pathname: '/**', 
       },
     ],
+    
   },
+    output: "standalone",
 };
 
 const withNextIntl = createNextIntlPlugin();

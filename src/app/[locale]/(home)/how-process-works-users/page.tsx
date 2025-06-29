@@ -31,7 +31,7 @@ const page = async () => {
     <section>
       <Banner titleKey="how-process-works-clients" />
       <div className="flex flex-col items-center justify-center">
-        <div className="mx-auto container p-4 xl:m-8 lg:m-6 m-4">
+        <div className="mx-auto container p-4 xl:m-8 lg:m-6 m-4 max-w-7xl">
           <div className=" grid lg:grid-cols-12 grid-cols-1 justify-between gap-6">
             <div className="flex flex-col lg:gap-6 gap-4 lg:col-span-7 col-span-1">
               <h2 className="xl:text-5xl lg:text-4xl text-3xl text-primary font-semibold">

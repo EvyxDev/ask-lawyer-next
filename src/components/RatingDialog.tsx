@@ -14,37 +14,55 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-interface RatingDialogProps {
-  requestId: number;
-  serviceId: number;
-}
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { rateServiceRequest } from "@/lib/apis/rating";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-export default function RatingDialog({
-  requestId,
-  serviceId,
-}: RatingDialogProps) {
-  console.log(requestId);
-  console.log(serviceId);
+export default function RatingDialog({ requestId }: { requestId: number }) {
   const t = useTranslations("HireRequest");
   const [rating, setRating] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+const queryClient = useQueryClient();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+    reset,
+  } = useForm<RateFormData>({
+    defaultValues: {
+      message: "",
+      rating: "",
+    },
+  });
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    try {
-      // Simulate API call to submit rating
-      // Replace with actual API call to your backend
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast.success(`${t("rating.successMessage")}`, {
+  const { mutate, isPending } = useMutation({
+    mutationFn: ({ rating, message }: RateFormData) =>
+      rateServiceRequest(String(requestId), rating, message),
+      onSuccess: () => {
+      toast.success(t("rating.successMessage"), {
         className: "!bg-primary !text-white !border-primary",
       });
-    } catch (error) {
-      toast.error(`${error}`, {
+      reset();
+      queryClient.invalidateQueries({ queryKey: ["Offer_User"] });
+      setRating(0);
+    },
+    onError: (error: Error) => {
+      toast.error(error.message || t("rating.errorMessage"), {
         className: "!bg-red-400 !text-white !border-red-500",
       });
-    } finally {
-      setIsSubmitting(false);
-    }
+    },
+  });
+
+  const onSubmit: SubmitHandler<RateFormData> = (data) => {
+    mutate({
+      message: data.message,
+      rating: data.rating,
+    });
+  };
+
+  const handleStarClick = (star: number) => {
+    setRating(star);
+    setValue("rating", star.toString(), { shouldValidate: true });
   };
 
   return (
@@ -65,32 +83,41 @@ export default function RatingDialog({
             {t("rating.dialogTitle")}
           </DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col items-center space-y-4">
-          <Label className=" text-md">{t("clickrate")}</Label>
-          <div className="flex space-x-1">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Star
-                key={star}
-                className={`h-9 w-9 cursor-pointer  ${
-                  star <= rating
-                    ? "fill-yellow-400 text-yellow-400"
-                    : "text-yellow-400"
-                }`}
-                onClick={() => setRating(star)}
-              />
-            ))}
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col items-center space-y-4">
+            <Label className="text-md">{t("clickrate")}</Label>
+            <div className="flex space-x-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star
+                  key={star}
+                  className={`h-9 w-9 cursor-pointer ${
+                    star <= rating
+                      ? "fill-yellow-400 text-yellow-400"
+                      : "text-yellow-400"
+                  }`}
+                  onClick={() => handleStarClick(star)}
+                />
+              ))}
+            </div>
+            {errors.rating && (
+              <p className="text-red-500 text-sm">{errors.rating.message}</p>
+            )}
 
-          <Label className=" text-md">{t("commentLabel")}</Label>
-          <Textarea className="min-h-28" />
-          <Button
-            onClick={handleSubmit}
-            disabled={rating === 0 || isSubmitting}
-            className="w-full"
-          >
-            {isSubmitting ? t("rating.submitting") : t("rating.submitRating")}
-          </Button>
-        </div>
+            <Label className="text-md">{t("commentLabel")}</Label>
+            <Textarea {...register("message")} className="min-h-28" />
+            {errors.message && (
+              <p className="text-red-500 text-sm">{errors.message.message}</p>
+            )}
+
+            <Button
+              type="submit"
+              disabled={rating === 0 || isPending}
+              className="w-full"
+            >
+              {isPending ? t("rating.submitting") : t("rating.submitRating")}
+            </Button>
+          </div>
+        </form>
       </DialogContent>
     </Dialog>
   );

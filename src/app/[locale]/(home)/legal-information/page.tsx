@@ -28,12 +28,12 @@ const page = async () => {
           <p className="text-[#666C89] xl:text-xl lg:text-lg text-md my-4 max-w-xl">
             {t("legal_consultation_info")}
           </p>
-          <div className=" flex items-center lg:gap-6 gap-4 justify-center  flex-wrap">
+          <div className=" flex items-center lg:gap-6 md:gap-4 gap-2 justify-center  flex-wrap">
             {legalInformationLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
-                className="bg-secondary hover:bg-secondary-dark transition-all duration-700  xl:w-64 md:w-56 w-48 2xl:h-52 xl:h-48 lg:h-40 h-36 shrink-0 text-white flex flex-col gap-4 items-center justify-center rounded-lg shadow-md text-center xl:text-2xl lg:text-xl text-lg font-semibold p-4 "
+                className="overflow-hidden bg-secondary hover:bg-secondary-dark transition-all duration-700 md:gap-4 gap-2  lg:w-48 md:w-44 w-40  lg:h-40 md:h-36 h-32  shrink-0 text-white flex flex-col  items-center justify-center rounded-lg shadow-md text-center  xl:text-xl lg:text-lg md:text-md text-sm font-semibold lg:p-4 md:p-3 p-2 "
               >
                 <Image width={60} alt={t(`${link.key}`)} src={link.img} />
 

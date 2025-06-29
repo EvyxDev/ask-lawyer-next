@@ -1,5 +1,6 @@
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,10 +8,11 @@ interface LayoutProps {
 
 export default async function Homelayout({ children }: LayoutProps) {
   return (
-    <div>
+    <>
       <NavBar />
+      <Toaster />
       {children}
       <Footer />
-    </div>
+    </>
   );
 }

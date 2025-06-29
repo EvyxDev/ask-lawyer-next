@@ -50,6 +50,7 @@ export const authOptions: NextAuthOptions = {
             name: data.data.user.name || null,
             email: data.data.user.email || null,
             token: data.data.token,
+            role:data.data.role,
             fcm_token: data.fcm_token || null,
           } as CustomUser;
         } catch (error) {
@@ -67,6 +68,7 @@ export const authOptions: NextAuthOptions = {
         token.name = customUser.name;
         token.email = customUser.email;
         token.token = customUser.token;
+        token.role = customUser.role;
         token.fcm_token = customUser.fcm_token;
       }
       return token;
@@ -80,6 +82,7 @@ export const authOptions: NextAuthOptions = {
           name: token.name as string | null,
           email: token.email as string | null,
           token: token.token as string,
+          role:token.role as string,
           fcm_token: token.fcm_token as string | null,
         },
       };

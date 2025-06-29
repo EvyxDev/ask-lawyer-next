@@ -4,28 +4,16 @@ import NextAuth from "next-auth";
 import { JWT } from "next-auth/jwt";
 
 declare module "next-auth" {
-  // Types of user
-  interface User {
-    user: {
-      firstName: string;
-      lastName: string;
-      email: string;
-      gender: "male" | "female";
-      phone: string;
-      photo: string | null;
-      role: "user" | "admin";
-      addresses: [];
-      wishlist: [];
-    } & DataBaseFields;
-    token: string;
+  interface Session extends CustomSession {
+    user: CustomUser;
   }
 
-  // Session Omit User
-  interface Session extends Omit<User,"token"> {
-   
-  }
+  interface User extends CustomUser {}
 }
 
+declare module "next-auth/jwt" {
+  interface JWT extends CustomUser {}
+}
 declare module "next-auth/jwt" {
 
   interface JWT extends User {}

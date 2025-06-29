@@ -7,6 +7,7 @@ export interface ApiUser {
   mobile: string | null;
   email_verified_at: string | null;
   token: string | null; 
+  role: string | null; 
   deleted_at: string | null;
   report_id: number;
   is_activate: number;
@@ -28,6 +29,7 @@ export interface CustomUser extends User {
   name: string | null;
   email: string | null;
   token: string; 
+  role:string | null; 
   fcm_token: string | null; 
 
 }
@@ -39,6 +41,7 @@ export interface CustomSession extends Session {
     name: string | null;
     email: string | null;
     token: string;
+    role:string | null;
     fcm_token: string | null; 
   };
 }

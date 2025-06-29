@@ -36,12 +36,12 @@ async function AboutContent({ params }: { params: Params }) {
           </div>
           <div className="flex flex-col gap-4">
             <div className="flex gap-4 items-center my-8">
-              <h2 className="lg:text-5xl text-4xl text-primary my-8 font-semibold">
+              <h2 className="lg:text-4xl text-3xl text-primary my-8 font-semibold">
                 {t("about")}
               </h2>
               <div className="bg-secondary w-36 h-[6px] mt-4"></div>
             </div>
-            <div className="gap-4 flex flex-col text-secondary lg:text-2xl text-xl">
+            <div className="gap-4 flex flex-col text-secondary lg:text-xl text-lg">
               <p>{response?.data?.content}</p>
             </div>
             <div className="w-full">

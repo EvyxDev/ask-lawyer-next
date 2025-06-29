@@ -1,6 +1,6 @@
 "use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -8,12 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { getLoginSchema, LoginFormType } from "@/lib/schemes/types/authSchema";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { FiLoader } from "react-icons/fi";
 import { getFCMToken } from "@/lib/fcm";
 import { mainlogo } from "../../../../../../public/assets";
-
+import Cookies from "js-cookie"; 
 const Login = () => {
   const [activeTab, setActiveTab] = useState("login");
   const [error, setError] = useState<string | null>(null);
@@ -51,7 +50,7 @@ const Login = () => {
     setError(null);
     try {
       const fcmToken = await getFCMToken(); 
-
+      console.log(fcmToken)
       const result = await signIn("credentials", {
         email: data.email,
         password: data.password,
@@ -59,12 +58,18 @@ const Login = () => {
         fcm_token: fcmToken, 
         redirect: false,
       });
-
+     
       if (result?.error) {
         setError(result.error);
       } else {
+        Cookies.set("user_role", getUserType(activeTab).toString(), {
+          expires: 7, 
+          secure: process.env.NODE_ENV === "production", 
+          sameSite: "Strict", 
+        });
         router.push("/");
       }
+      
     } catch (error) {
       setError(error instanceof Error ? error.message : "خطأ غير معروف");
     }
@@ -93,7 +98,7 @@ const Login = () => {
           quality={100}
         />
       </div>
-      <h2 className="text-4xl">{t("title")}</h2>
+      <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl">{t("title")}</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center gap-8"
@@ -101,7 +106,7 @@ const Login = () => {
         <div>
           <input
             type="email"
-            className="w-full py-4 rounded-lg border-2 px-4 rtl:text-right"
+          className="peer w-full py-4 rtl:text-right rounded-lg border px-4 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
             placeholder={t("labels.email")}
             {...register("email")}
           />
@@ -112,7 +117,7 @@ const Login = () => {
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}
-            className="w-full py-4 rounded-lg border-2 px-4 rtl:text-right"
+          className="peer w-full py-4 rtl:text-right rounded-lg border px-4 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
             placeholder={t("labels.password")}
             {...register("password")}
           />
@@ -137,7 +142,7 @@ const Login = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="text-2xl cursor-pointer py-4 bg-background-dark hover:bg-secondary-dark w-full rounded-lg text-white"
+          className="lg:text-2xl md:text-xl text-lg cursor-pointer md:py-3 py-2 bg-background-dark hover:bg-secondary-dark w-full rounded-lg text-white"
         >
           {isSubmitting ? (
             <span className="w-full flex justify-center items-center">
@@ -173,19 +178,19 @@ const Login = () => {
           <TabsList className="grid grid-cols-3 w-full gap-6 bg-transparent justify-center items-center h-12">
             <TabsTrigger
               value="client"
-              className="w-auto h-9 cursor-pointer rounded-none font-normal !bg-transparent shadow-transparent text-secondary-dark lg:text-2xl text-xl data-[state=active]:text-primary data-[state=active]:font-bold transition-colors"
+              className="w-auto h-9 cursor-pointer rounded-none font-semibold !bg-transparent shadow-transparent text-secondary-dark xl:text-2xl lg:text-xl md:text-lg text-md xl:data-[state=active]:text-3xl lg:data-[state=active]:text-2xl data-[state=active]:text-xl data-[state=active]:text-primary data-[state=active]:font-bold transition-colors"
             >
               {t("client")}
             </TabsTrigger>
             <TabsTrigger
               value="consultant"
-              className="w-auto h-9 cursor-pointer rounded-none font-normal !bg-transparent shadow-transparent text-secondary-dark lg:text-2xl text-xl data-[state=active]:text-primary data-[state=active]:font-bold transition-colors"
+              className="w-auto h-9 cursor-pointer rounded-none font-semibold !bg-transparent shadow-transparent text-secondary-dark xl:text-2xl lg:text-xl md:text-lg text-md xl:data-[state=active]:text-3xl lg:data-[state=active]:text-2xl data-[state=active]:text-xl data-[state=active]:text-primary data-[state=active]:font-bold transition-colors"
             >
               {t("consultant")}
             </TabsTrigger>
             <TabsTrigger
               value="lawyer"
-              className="w-auto h-9 cursor-pointer rounded-none font-normal !bg-transparent shadow-transparent text-secondary-dark lg:text-2xl text-xl data-[state=active]:text-primary data-[state=active]:font-bold transition-colors"
+              className="w-auto h-9 cursor-pointer rounded-none font-semibold !bg-transparent shadow-transparent text-secondary-dark xl:text-2xl lg:text-xl md:text-lg text-md xl:data-[state=active]:text-3xl lg:data-[state=active]:text-2xl data-[state=active]:text-xl data-[state=active]:text-primary data-[state=active]:font-bold transition-colors"
             >
               {t("lawyer")}
             </TabsTrigger>

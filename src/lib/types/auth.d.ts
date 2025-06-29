@@ -11,7 +11,11 @@ declare type RegisterFields = {
 declare type ForgotPasswordFields = {
   email: string;
 };
-
+declare type RegisterUserType = {
+ email: string;
+  password: string;
+  password_confirmation: string;
+};
 declare type LoginResponse = User;
 
 declare interface changePassword  {

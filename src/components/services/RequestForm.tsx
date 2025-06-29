@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -13,30 +15,31 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FiLoader } from "react-icons/fi";
+import { toast } from "sonner";
+
 import {
   RequestFormSchema,
   RequestFormType,
 } from "@/lib/schemes/types/requestForm";
-import {
-  getCountries,
-  getLanguages,
-  sendRequestForm,
-  getLawyers,
-} from "@/lib/apis/requestform";
+import { getCountries, getLanguages, getLawyers } from "@/lib/apis/requestform";
+import { sendRequestForm } from "@/lib/apis/requestServiceform";
+import { useSession } from "next-auth/react";
 
 const RequestForm = ({
+  lawyerId,
   type,
   lawyer_type,
   token,
 }: {
+  lawyerId?: string;
   type: string;
   lawyer_type: string;
-  token: string | null
+  token: string | null;
 }) => {
   const t = useTranslations("RequestForm");
   const locale = useLocale();
   const direction = locale === "ar" ? "rtl" : "ltr";
-
+  const { data: session } = useSession();
   const { data: CountriesData } = useQuery({
     queryKey: ["Countries"],
     queryFn: () => getCountries(locale),
@@ -53,6 +56,7 @@ const RequestForm = ({
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
     reset,
   } = useForm<RequestFormType>({
@@ -67,7 +71,6 @@ const RequestForm = ({
         lang_id: t("errors.lang_id"),
       })
     ),
-
     defaultValues: {
       email: "",
       name: "",
@@ -75,9 +78,12 @@ const RequestForm = ({
       message: "",
       country_id: undefined,
       lang_id: undefined,
-      lawyer_id: undefined,
+      lawyer_id: lawyerId ? Number(lawyerId) : undefined,
     },
   });
+
+  const lawyerIdValue = watch("lawyer_id");
+  const role = session?.user?.role;
 
   // Mutation for form submission
   const { mutate, isPending, error, data } = useMutation({
@@ -91,6 +97,19 @@ const RequestForm = ({
   });
 
   const onSubmit: SubmitHandler<RequestFormType> = (data) => {
+
+
+    if (!session) {
+      toast.error(t("errors.loginRequired"), {
+        className: "!bg-red-400 !text-white !border-red-500",
+      });
+          if (role === "1") {
+      toast.error(t("lawyerCannotSubmitRequest"), {
+        className: "!bg-red-400 !text-white !border-primary",
+      });
+    }
+      return;
+    }
     mutate({
       email: data.email,
       name: data.name,
@@ -101,12 +120,11 @@ const RequestForm = ({
       lang_id: data.lang_id,
       lawyer_id: data.lawyer_id,
       lawyer_type,
-      token
     });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="m-8">
+    <form onSubmit={handleSubmit(onSubmit)} className="lg:m-8 md:m-6 m-4">
       <div className="flex lg:flex-row flex-col gap-6 w-full">
         <div className="lg:w-1/2 w-full">
           <input
@@ -122,7 +140,8 @@ const RequestForm = ({
         <div className="lg:w-1/2 w-full">
           <Select
             dir={direction}
-            onValueChange={(value) => setValue("lawyer_id", Number(value))} // ✅
+            onValueChange={(value) => setValue("lawyer_id", Number(value))}
+            value={lawyerIdValue ? lawyerIdValue.toString() : undefined}
           >
             <SelectTrigger className="w-full bg-[#F5F5F5] rounded-md">
               <SelectValue placeholder={t("lawyer")} />
@@ -130,9 +149,9 @@ const RequestForm = ({
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>{t("lawyer")}</SelectLabel>
-                {lawyersData?.data?.map((laywer) => (
-                  <SelectItem key={laywer.id} value={laywer.id.toString()}>
-                    {laywer.name}
+                {lawyersData?.data?.map((lawyer) => (
+                  <SelectItem key={lawyer.id} value={lawyer.id.toString()}>
+                    {lawyer.name}
                   </SelectItem>
                 ))}
               </SelectGroup>
@@ -192,7 +211,7 @@ const RequestForm = ({
         <div className="lg:w-1/2 w-full">
           <Select
             dir={direction}
-            onValueChange={(value) => setValue("lang_id", Number(value))} // ✅
+            onValueChange={(value) => setValue("lang_id", Number(value))}
           >
             <SelectTrigger className="w-full bg-[#F5F5F5] rounded-md">
               <SelectValue placeholder={t("language")} />

@@ -39,7 +39,7 @@ const settingsData = [
   {
     id: 2,
     name: "subscription_plan",
-    url: "/dashboard/subscription_plan",
+    url: "/dashboard/subscription-plan",
     icon: GoChecklist,
   },
   {

@@ -9,6 +9,11 @@ declare type RequestFormData = {
   lawyer_id?: number;
   lawyer_type: string;
 };
+declare type sendRequestPriceRequest = {
+  price: string;
+  message: string;
+  request_id: string;
+};
 declare type CountryTranslation = {
   id: number;
   country_id: number;
@@ -25,25 +30,24 @@ declare type Country = {
   name: string;
   translations: CountryTranslation[];
 };
-
 declare type City = {
   id: number;
-  created_at: string;
-  updated_at: string;
-  deleted_at: string | null;
-  is_activate: number;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string | null;
+  is_activate?: number;
   name: string;
-  translations: CountryTranslation[];
+  translations?: CountryTranslation[];
+  name_company?: string;
 };
 declare type CityTranslation = {
   id: number;
- city_id: number;
+  city_id: number;
   locale: string;
   name: string;
 };
-
 declare type CountriesResponse = {
-  success?: boolean; 
+  success?: boolean;
   message?: string;
   data: Country[] | null;
   error?: string;
@@ -57,11 +61,9 @@ declare interface Language {
 declare interface LanguageResponse {
   success: boolean;
   message: string;
-  data: Language[]| null;
+  data: Language[] | null;
   error?: string;
 }
-
-
 
 declare interface Lawyers {
   id: number;
@@ -70,6 +72,17 @@ declare interface Lawyers {
 declare interface LawyersResponse {
   success: boolean;
   message: string;
-  data: Language[]| null;
+  data: Language[] | null;
   error?: string;
+}
+declare interface userRequest {
+  first_name: string;
+  last_name: string;
+  mobile: string;
+  email: string;
+  message: string;
+  summary: string;
+  service_id?: string;
+  lawyer_id?: string;
+  files?: File | File[];
 }

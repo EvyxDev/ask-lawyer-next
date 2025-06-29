@@ -19,7 +19,7 @@ export const HeroLinks = [
     { key: "ask_lawyer", href: "/ask-lawyer",img: asklawyer },
   { key: "request_offer", href: "/request-price-offer" ,img: requestoffer },
     { key: "call_lawyer", href: "/call-lawyer",img: calllawyer },
-  { key: "ask_service", href: "/ask-service" ,img: askservice },
+  { key: "ask_service", href: "/services" ,img: askservice },
   { key: "choose_lawyer", href: "/choose-lawyer" ,img: chooselawyer },
   { key: "chat_with_consultant", href: "/consultant-chat" ,img:consultantchat },
 
@@ -28,7 +28,7 @@ export const servicesLinks = [
 { key: "ask_lawyer", href: "/ask-lawyer",img: asklawyer },
  { key: "call_lawyer", href: "/call-request",img: calllawyer },
  { key: "chat_with_consultant", href: "/consultant-chat" ,img:consultantchat },
- { key: "chat_with_lawyer", href: "/chat-with-lawyer" ,img: consultantchat },
+ { key: "chat_with_lawyer", href: "/live-chat" ,img: consultantchat },
  { key: "choose_lawyer", href: "/choose-lawyer" ,img: chooselawyer },
  { key: "request_offer", href: "/request-price-offer" ,img: requestoffer },
 ];
@@ -46,7 +46,7 @@ export const legalInformationLinks = [
 ];
 export const chooselawyerLinks = [
 { key: "lawyers", href: "/lawyers",img: lawyersIcon2 },
-{ key:  "lawFirms", href: "/law-Firms",img: lawyerscompanyIcon },
+{ key:  "lawFirms", href: "/law-firms",img: lawyerscompanyIcon },
 
 ];
 
@@ -58,7 +58,7 @@ export const hereData: HereData[] = [
     images: [
       { id: 1, title: "Sunset Landscape", imgUrl: hero2 },
       { id: 2, title: "City Skyline", imgUrl: hero1 },
-      { id: 3, title: "Mountain Adventure", imgUrl: hero1 },
+      { id: 3, title: "Mountain Adventure", imgUrl: hero2 },
     ],
   },
 ];

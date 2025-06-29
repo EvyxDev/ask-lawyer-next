@@ -1,7 +1,11 @@
-"use client"
+"use client";
 
-import { useLocale, useTranslations } from "next-intl"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { useLocale, useTranslations } from "next-intl";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import {
   SidebarGroup,
   SidebarMenu,
@@ -10,18 +14,25 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import { BsChatSquareDots } from "react-icons/bs";
 import { RiQuestionAnswerLine } from "react-icons/ri";
 import { FiPhoneCall } from "react-icons/fi";
-import { ChevronRight, Settings } from 'lucide-react';
+import { ChevronRight, Settings } from "lucide-react";
 import { FaRegNewspaper } from "react-icons/fa";
-import { Link, usePathname } from "@/i18n/routing"
-import { Gavel ,MessageCircleMore ,MessageSquarePlus  } from "lucide-react"
+import { Link, usePathname } from "@/i18n/routing";
+import { Gavel, MessageCircleMore, MessageSquarePlus } from "lucide-react";
 import { LuClipboardList } from "react-icons/lu";
-import { BriefcaseBusiness } from 'lucide-react';
+import { BriefcaseBusiness } from "lucide-react";
+import { LuLayoutGrid } from "react-icons/lu";
+import { IoLayers } from "react-icons/io5";
+import { useSession } from "next-auth/react";
 
-const items = [
+export function NavMain() {
+  const { data: session } = useSession();
+  const userId = session?.user?.role;
+
+  const items = [
     {
       title: "cases",
       url: "/dashboard",
@@ -32,26 +43,22 @@ const items = [
           title: "request_offer",
           url: "/dashboard/request_offer",
           icon: MessageSquarePlus,
-
         },
         {
           title: "chat",
           url: "/dashboard/chat",
           icon: BsChatSquareDots,
-
         },
         {
           title: "questions",
           url: "/dashboard/questions",
-        icon: RiQuestionAnswerLine,
-
+          icon: RiQuestionAnswerLine,
         },
-         {
+        {
           title: "calls",
           url: "/dashboard/calls",
-           icon: FiPhoneCall,
-
-        }
+          icon: FiPhoneCall,
+        },
       ],
     },
     {
@@ -63,26 +70,33 @@ const items = [
           title: "questions",
           url: "#",
           icon: Gavel,
-
         },
         {
           title: "calls",
           url: "#",
-                icon: Gavel,
-
+          icon: Gavel,
         },
         {
           title: "chat",
           url: "#",
           icon: Gavel,
-
         },
       ],
     },
-     {
+    {
       title: "blogs",
       url: "/dashboard/blogs",
       icon: FaRegNewspaper,
+    },
+    {
+      title: "my-services",
+      url: "/dashboard/my-services",
+      icon: IoLayers,
+    },
+    {
+      title: "Platform-Services",
+      url: "/dashboard/platform-services",
+      icon: LuLayoutGrid,
     },
     {
       title: "settings",
@@ -98,51 +112,57 @@ const items = [
         {
           title: "lawyerJobApplications",
           url: "/dashboard/lawyer-job-applications",
-           icon: BriefcaseBusiness ,
-
+          icon: BriefcaseBusiness,
         },
         {
           title: "request_offer",
           url: "/dashboard/request-price-offer",
           icon: MessageSquarePlus,
-
         },
         {
-          title: "chat_request",
-          url: "/dashboard/chat-request",
+          title: "chat-requests",
+          url: "/dashboard/chat-requests",
           icon: BsChatSquareDots,
-
         },
         {
           title: "questions_request",
           url: "/dashboard/questions-request",
-        icon: RiQuestionAnswerLine,
-
+          icon: RiQuestionAnswerLine,
         },
-         {
-          title: "calls_request",
+        {
+          title: "call-requests",
           url: "/dashboard/calls-request",
-           icon: FiPhoneCall,
-
-        }
+          icon: FiPhoneCall,
+        },
       ],
     },
-  ]
+  ];
 
+  // Filter items based on userId
+  const filteredItems = items.filter((item) => {
+    if (userId === 2) {
+      return !["blogs", "my-services", "Platform-Services"].includes(item.title);
+    }
+    return true; // Show all items for userId === "1" or other cases
+  });
 
-export function NavMain() {
-  const locale = useLocale()
-  const isRTL = locale === "ar"
-  const t = useTranslations()
-  const pathname = usePathname()
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+  const t = useTranslations();
+  const pathname = usePathname();
 
   return (
     <SidebarGroup>
       <SidebarMenu>
-        {items.map((item) => (
+        {filteredItems.map((item) => (
           <SidebarMenuItem key={item.title}>
             {item.items ? (
-              <Collapsible defaultOpen={item.items.some((subItem) => pathname === subItem.url)} className="group/collapsible">
+              <Collapsible
+                defaultOpen={item.items.some(
+                  (subItem) => pathname === subItem.url
+                )}
+                className="group/collapsible"
+              >
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton
                     className={`rounded-none text-[#05244080] font-[700] py-5 text-xl hover:text-primary hover:bg-transparent ${
@@ -153,7 +173,11 @@ export function NavMain() {
                     {item.icon && <item.icon />}
                     <span>{t(`sidebar.${item.title}`)}</span>
                     <ChevronRight
-                      className={`${isRTL ? "mr-auto" : "ml-auto"} transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 ${isRTL ? "rotate-180" : ""}`}
+                      className={`${
+                        isRTL ? "mr-auto" : "ml-auto"
+                      } transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 ${
+                        isRTL ? "rotate-180" : ""
+                      }`}
                     />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
@@ -162,7 +186,9 @@ export function NavMain() {
                     {item.items.map((subItem) => (
                       <SidebarMenuSubItem key={subItem.title}>
                         <SidebarMenuSubButton
-                          className={`!text-lg font-[600] ${pathname === subItem.url ? "text-primary" : ""}`}
+                          className={`!text-lg font-[600] ${
+                            pathname === subItem.url ? "text-primary" : ""
+                          }`}
                           asChild
                         >
                           <Link href={subItem.url}>
@@ -193,5 +219,5 @@ export function NavMain() {
         ))}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

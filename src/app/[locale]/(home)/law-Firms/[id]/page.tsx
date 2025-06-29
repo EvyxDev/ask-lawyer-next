@@ -1,15 +1,10 @@
 import Banner from "@/components/Banner";
-import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { BiSolidBarChartAlt2 } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
 import { FaCrown } from "react-icons/fa6";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { MdLanguage, MdOutlineWork } from "react-icons/md";
-import { BiPhoneCall } from "react-icons/bi";
-import { TbMessage2 } from "react-icons/tb";
-import { FaRegCircleQuestion } from "react-icons/fa6";
-import { MdWorkOutline } from "react-icons/md";
 import ActiveLawyers from "@/components/ActiveLawyers";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -186,61 +181,28 @@ const LawyerProfileContent = async ({ id }: { id: string }) => {
               </div>
             </div>
           </div>
-          <div className="md:col-span-3 col-span-1 gap-6 shadow rounded-md">
-            <span className="bg-[#FCFCFC] h-20 flex items-center">
-              <h2 className="text-5xl font-semibold truncate flex items-center p-3 gap-2">
-                {lawyer?.name}
-              </h2>
-            </span>
-            <div className="m-6 flex justify-between flex-col lg:gap-6 gap-4">
-              <Link
-                className="flex gap-4 items-center hover:bg-[#f1f1f1] p-2 rounded-lg transition-all duration-500"
-                href="#"
-              >
-                <MdWorkOutline className="text-[#E2AC6C] text-4xl" />
-                <p className="text-gray-500 font-semibold text-xl">وظف محام</p>
-              </Link>
-              <Link
-                className="flex gap-4 items-center hover:bg-[#f1f1f1] p-2 rounded-lg transition-all duration-500"
-                href="#"
-              >
-                <BiPhoneCall className="text-[#E2AC6C] text-4xl" />
-                <p className="text-gray-500 font-semibold text-xl">
-                  اجراء مكالمة
-                </p>
-              </Link>
-              <Link
-                className="flex gap-4 items-center hover:bg-[#f1f1f1] p-2 rounded-lg transition-all duration-500"
-                href="#"
-              >
-                <TbMessage2 className="text-[#E2AC6C] text-4xl" />
-                <p className="text-gray-500 font-semibold text-xl">دردشة حية</p>
-              </Link>
-              <Link
-                className="flex gap-4 items-center hover:bg-[#f1f1f1] p-2 rounded-lg transition-all duration-500"
-                href="#"
-              >
-                <FaRegCircleQuestion className="text-[#E2AC6C] text-4xl" />
-                <p className="text-gray-500 font-semibold text-xl">ارسل سؤال</p>
-              </Link>
-            </div>
-          </div>
         </div>
         <div className="p-4 xl:m-8 lg:m-6 m-4 grid md:grid-cols-12 grid-cols-1 gap-6 w-full">
           <div className="md:col-span-9 col-span-1">
-            <div className="mb-4 shadow">
+            <div className="mb-4 shadow p-3">
               <span className="bg-[#FCFCFC] h-20 flex items-center">
-                <h2 className="text-4xl font-semibold truncate flex items-center p-3 gap-2">
+                <h2 className="text-4xl font-semibold truncate flex items-center gap-2">
                   {t("contactInformation")}
                 </h2>
               </span>
-              <span className="flex gap-2 items-center">
-                                <CgWebsite size={30} />
-
-                <p className="text-[#666C89] text-xl p-4 font-medium">
-                  {lawyer?.website_company}
-                </p>
-              </span>
+              <a
+                href={lawyer?.website_company}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                <span className="flex gap-2 items-center">
+                  <CgWebsite size={30} />
+                  <p className="text-[#666C89] text-xl p-4 font-medium">
+                    {lawyer?.website_company}
+                  </p>
+                </span>
+              </a>
             </div>
             <div className="mb-4 shadow">
               <span className="bg-[#FCFCFC] h-20 flex items-center">

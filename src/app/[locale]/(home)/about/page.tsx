@@ -1,12 +1,17 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { aboutusBg } from "../../../../../public/assets";
+import About from "@/components/home/About";
+type PageProps = {
+  params: Promise<{ locale: string }>;
+};
+const page = async ({ params }: PageProps) => {
+  const { locale } = await params;
 
-const page = async() => {
-  const t = await getTranslations()
+  const t = await getTranslations();
   return (
-    <section>
-      <div className="relative h-[40vh] flex justify-center items-center">
+    <section className="min-h-screen">
+    <div className="relative h-[40vh] flex justify-center items-center">
         <Image
           alt="about Us background "
           fill
@@ -18,6 +23,7 @@ const page = async() => {
           {t("about")}
         </h1>
       </div>
+      <About params={{ locale }} />
     </section>
   );
 };

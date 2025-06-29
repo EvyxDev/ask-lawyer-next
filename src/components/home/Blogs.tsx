@@ -34,10 +34,10 @@ export default function Blogs() {
     <section className="py-16 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
       <div className="flex flex-col items-center mb-12">
         <div className="flex gap-4 items-center">
-          <h2 className="text-4xl md:text-5xl text-primary font-semibold">
+          <h2 className="md:text-4xl lg:text-5xl text-3xl text-primary font-semibold">
             {t("blogs")}
           </h2>
-          <div className="bg-secondary w-24 md:w-36 h-[6px] mt-4"></div>
+          <div className="bg-secondary lg:w-36 md:w-24 w-16  h-[6px] mt-4"></div>
         </div>
       </div>
 
@@ -58,8 +58,8 @@ export default function Blogs() {
                 onClick={() => setSelectedCategoryId(cat.id)}
                 className={`px-2 py-1 sm:px-4 sm:py-2 text-primary hover:text-primary-dark font-semibold cursor-pointer shrink-0 ${
                   selectedCategoryId === cat.id
-                    ? "lg:text-4xl text-xl sm:text-3xl text-primary-dark"
-                    : "lg:text-3xl text-lg sm:text-2xl"
+                    ? "lg:text-3xl text-2xl   text-primary-dark"
+                    : "lg:text-2xl text-xl "
                 }`}
               >
                 {cat.name}

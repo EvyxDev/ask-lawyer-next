@@ -6,17 +6,18 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import ChangeLanguage from "../ChangeLanguage";
-import { usePathname } from "@/i18n/routing";
+import { usePathname, useRouter } from "@/i18n/routing";
 
 export function Navbar({ className }: { className?: string }) {
   const t = useTranslations("navbar-dashboard");
   const locale = useLocale();
   const isRTL = locale === "ar";
   const pathname = usePathname();
-  
-  // Extract the word after "/dashboard"
+  const router = useRouter(); 
   const pageName = pathname.split("/dashboard/")[1]?.split("/")[0] || "dashboard";
-
+const handleSearchClick = () => {
+    router.push("/search");
+  };
   return (
     <nav
       className={cn(
@@ -41,6 +42,7 @@ export function Navbar({ className }: { className?: string }) {
               isRTL ? "text-right" : "text-left",
               "!focus:outline-none !focus:ring-0 !focus:border-inherit !focus:shadow-none"
             )}
+            onClick={handleSearchClick} 
           />
         </div>
       </div>

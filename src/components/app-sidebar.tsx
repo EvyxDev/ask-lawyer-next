@@ -11,6 +11,7 @@ import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import { TeamSwitcher } from "./team-switcher";
 import { getProfile } from "@/lib/apis/profile";
+import { MdError } from "react-icons/md";
 
 
 
@@ -23,7 +24,7 @@ export async function AppSidebar({
 
     const profileData = await getProfile();
      if (!profileData?.data) {
-    return <div>Profile data not found.</div>;
+    return <div className="text-red-400 h-full flex justify-center items-center"><MdError size={40}/></div>;
   }
   return (
     <Sidebar collapsible="icon" side={side} {...props}>

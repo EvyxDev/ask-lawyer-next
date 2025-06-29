@@ -118,8 +118,6 @@ const LawyerProfileContent = async ({ id }: { id: string }) => {
                     height={600}
                     priority
                   />
-
-                
                 </div>
               </div>
               <div className="md:col-span-7 col-span-1 flex flex-col gap-6 m-8 text-gray-500">
@@ -190,80 +188,86 @@ const LawyerProfileContent = async ({ id }: { id: string }) => {
           </div>
           <div className="md:col-span-3 col-span-1 gap-6 shadow rounded-md">
             <span className="bg-[#FCFCFC] h-20 flex items-center">
-              <h2 className="text-5xl font-semibold truncate flex items-center p-3 gap-2">
+              <h2 className="lg:text-4xl text-3xl font-semibold truncate flex items-center p-3 gap-2">
                 {lawyer?.name}
               </h2>
             </span>
             <div className="m-6 flex justify-between flex-col lg:gap-6 gap-4">
               <Link
                 className="flex gap-4 items-center hover:bg-[#f1f1f1] p-2 rounded-lg transition-all duration-500"
-                href="#"
+                href={`/lawyers/${id}/hire-lawyer`}
               >
                 <MdWorkOutline className="text-[#E2AC6C] text-4xl" />
-                <p className="text-gray-500 font-semibold text-xl">وظف محام</p>
+                <p className="text-gray-500 font-semibold text-xl">{t("hire-lawyer")}</p>
               </Link>
               <Link
                 className="flex gap-4 items-center hover:bg-[#f1f1f1] p-2 rounded-lg transition-all duration-500"
-                href="#"
+                href={`/lawyers/${id}/make-call`}
               >
                 <BiPhoneCall className="text-[#E2AC6C] text-4xl" />
                 <p className="text-gray-500 font-semibold text-xl">
-                  اجراء مكالمة
+                  {t("make-call")}
                 </p>
               </Link>
               <Link
                 className="flex gap-4 items-center hover:bg-[#f1f1f1] p-2 rounded-lg transition-all duration-500"
-                href="#"
+                href={`/lawyers/${id}/live-chat`}
               >
                 <TbMessage2 className="text-[#E2AC6C] text-4xl" />
-                <p className="text-gray-500 font-semibold text-xl">دردشة حية</p>
+                <p className="text-gray-500 font-semibold text-xl">{t("live-chat")}</p>
               </Link>
               <Link
                 className="flex gap-4 items-center hover:bg-[#f1f1f1] p-2 rounded-lg transition-all duration-500"
-                href="#"
+                href={`/lawyers/${id}/send-question`}
               >
                 <FaRegCircleQuestion className="text-[#E2AC6C] text-4xl" />
-                <p className="text-gray-500 font-semibold text-xl">ارسل سؤال</p>
+                <p className="text-gray-500 font-semibold text-xl">{t("send-question")} </p>
               </Link>
             </div>
           </div>
         </div>
         <div className="p-4 xl:m-8 lg:m-6 m-4 grid md:grid-cols-12 grid-cols-1 gap-6 w-full">
           <div className="md:col-span-9 col-span-1">
-            <div className="mb-4 shadow">
-              <span className="bg-[#FCFCFC] h-20 flex items-center">
-                <h2 className="text-4xl font-semibold truncate flex items-center p-3 gap-2">
-                  {t("lawyer_profile")}
-                </h2>
-              </span>
-              <p className="text-[#666C89] text-xl p-4 font-medium">
-                {lawyer?.education}
-              </p>
-            </div>
-            <div className="mb-4 shadow">
-              <span className="bg-[#FCFCFC] h-20 flex items-center">
-                <h2 className="text-4xl font-semibold truncate flex items-center p-3 gap-2">
-                  {t("Medals")}
-                </h2>
-              </span>
-              <p className="text-[#666C89] text-xl p-4 font-medium">
-                {lawyerData?.data?.medals}
-              </p>
-            </div>
-            <div className="mb-4 shadow">
-              <span className="bg-[#FCFCFC] h-20 flex items-center">
-                <h2 className="text-4xl font-semibold truncate flex items-center p-3 gap-2">
-                  {t("review")}
-                </h2>
-              </span>
-              <p className="text-[#666C89] text-xl p-4 font-medium flex items-center gap-2">
-                <p className="text-lg font-bold truncate flex items-center gap-1">
-                  {renderStars(rate)}
-                  <span className="ml-2">{rate}</span>
+            {lawyer?.education && (
+              <div className="mb-4 shadow">
+                <span className="bg-[#FCFCFC] h-20 flex items-center">
+                  <h2 className="text-4xl font-semibold truncate flex items-center p-3 gap-2">
+                    {t("lawyer_profile")}
+                  </h2>
+                </span>
+                <p className="text-[#666C89] text-xl p-4 font-medium">
+                  {lawyer?.education}
                 </p>
-                <span>{t("based_on_ratings", { count: ratingCount })}</span>
-              </p>
-            </div>
+              </div>
+            )}
+            {lawyerData?.data?.medals && (
+              <div className="mb-4 shadow">
+                <span className="bg-[#FCFCFC] h-20 flex items-center">
+                  <h2 className="text-4xl font-semibold truncate flex items-center p-3 gap-2">
+                    {t("Medals")}
+                  </h2>
+                </span>
+                <p className="text-[#666C89] text-xl p-4 font-medium">
+                  {lawyerData?.data?.medals}
+                </p>
+              </div>
+            )}
+            {rate > 0 && (
+              <div className="mb-4 shadow">
+                <span className="bg-[#FCFCFC] h-20 flex items-center">
+                  <h2 className="text-4xl font-semibold truncate flex items-center p-3 gap-2">
+                    {t("review")}
+                  </h2>
+                </span>
+                <p className="text-[#666C89] text-xl p-4 font-medium flex items-center gap-2">
+                  <p className="text-lg font-bold truncate flex items-center gap-1">
+                    {renderStars(rate)}
+                    <span className="ml-2">{rate}</span>
+                  </p>
+                  <span>{t("based_on_ratings", { count: ratingCount })}</span>
+                </p>
+              </div>
+            )}
           </div>
           <ActiveLawyers />
         </div>

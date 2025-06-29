@@ -20,7 +20,7 @@ import { useForm, Controller } from "react-hook-form";
 import { updateProfile } from "@/lib/apis/profile";
 import { toast } from "sonner";
 
-const ProfileForm = ({ profileData }: { profileData: Profile }) => {
+const ProfileForm = ({ profileData }: { profileData: Profile | null }) => {
   const t = useTranslations("settings-dashboard");
   const locale = useLocale();
   const direction = locale === "ar" ? "rtl" : "ltr";
@@ -33,14 +33,14 @@ const ProfileForm = ({ profileData }: { profileData: Profile }) => {
     watch,
   } = useForm<ProfileFormData>({
     defaultValues: {
-      name: profileData.name,
-      email: profileData.email,
-      title: profileData.title,
-      mobile: profileData.mobile,
-      country_id: profileData.country_id,
-      city_id: profileData.city_id,
-      address: profileData.address,
-      img: profileData.img || placeholder,
+     name: profileData?.name || "",
+    email: profileData?.email || "",
+    title: profileData?.title || "",
+    mobile: profileData?.mobile || "",
+    country_id: profileData?.country_id || "",
+    city_id: profileData?.city_id || "",
+    address: profileData?.address || "",
+    img: profileData?.img || placeholder,
     },
   });
 

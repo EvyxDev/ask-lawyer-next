@@ -1,6 +1,6 @@
 "use client";
 
-import { hereData, HeroLinks } from "@/lib/constants";
+import { HeroLinks } from "@/lib/constants";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import "swiper/css";
@@ -19,8 +19,7 @@ const HeroSection = () => {
     queryKey: ["hero"],
     queryFn: () => getHero(locale),
   });
-  const images = hereData[0].images;
-
+  const images = HeroData?.data?.images;
   return (
     <section className="w-full relative h-screen  flex justify-center items-center">
       {/* Hero Swiper Section */}
@@ -37,12 +36,12 @@ const HeroSection = () => {
         }}
         className="h-full w-full"
       >
-        {images.map((img) => (
-          <SwiperSlide key={img.id}>
-            <div className="h-screen max-h-[80vh] w-full">
+        {images?.map((img: string, index: number) => (
+          <SwiperSlide key={index}>
+            <div className="relative h-screen max-h-[100vh] w-full">
               <Image
-                src={img.imgUrl}
-                alt={img.title}
+                src={img}
+                alt={HeroData?.data?.title || ""}
                 fill
                 className="object-cover"
               />
@@ -51,7 +50,7 @@ const HeroSection = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="absolute bottom-1/2 xl:start-0 xl:-translate-x-0 translate-x-1/2	start-1/2	 z-20   font-semibold bg-[#F2E9EF80] blurred rounded-sm 2xl:p-12 lg:p-8 md:p-6 p-4   md:max-w-3xl max-w-full w-full flex flex-col lg:gap-4 gap-3 ">
+      <div className="absolute md:bottom-1/2 bottom-1/3   lg:start-0 start-1/2 xl:-translate-x-0 translate-x-1/2		 z-20   font-semibold bg-[#F2E9EF80] blurred rounded-sm 2xl:p-12 lg:p-8 md:p-6 p-4   md:max-w-3xl max-w-full w-full flex flex-col lg:gap-4 gap-3 ">
         {HeroData?.data && (
           <>
             <h2 className="lg:text-4xl text-2xl text-primary ">
@@ -73,7 +72,7 @@ const HeroSection = () => {
             <Link
               key={index}
               href={link.href}
-              className="bg-secondary hover:bg-secondary-dark transition-all duration-700 2xl:w-64 xl:w-60 md:w-56 w-48 2xl:h-48 lg:h-40 h-36 shrink-0 text-white flex flex-col gap-4 items-center justify-center rounded-lg shadow-md text-center xl:text-2xl lg:text-xl text-lg font-semibold p-4 "
+              className="bg-secondary hover:bg-secondary-dark transition-all duration-700   md:w-52 w-48 md:h-48 lg:h-40 h-36 shrink-0 text-white flex flex-col gap-4 items-center justify-center rounded-lg shadow-md text-center  lg:text-xl text-lg font-semibold p-4 "
             >
               <Image width={60} alt={t(link.key)} src={link.img} />
 
